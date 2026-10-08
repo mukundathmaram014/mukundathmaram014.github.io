@@ -1,0 +1,54 @@
+/* ===========================================================
+   fonts.css — the site's web fonts. Every page links it, just
+   before site.css.
+   =========================================================== */
+
+/* Self-hosted, in assets/fonts/ with their licences (SIL Open Font
+   License; OFL-*.txt there). They came from Google Fonts' stylesheet, a
+   render-blocking request to another origin: a DNS lookup and a TCP and a
+   TLS handshake before the first paint could happen, 125-297ms on a cold
+   load (audit F40). These are the very files that stylesheet served, its
+   latin subset, with its unicode-range: every character the pages use is
+   in it (the template's left arrow never was, in any subset, and falls
+   back to the system mono as before). Each page preloads the two faces its
+   first paint needs (the inline script in its <head>), and site.js loads
+   the italic once index.html has loaded, for the panels that show it.
+
+   The upright Newsreader file is variable (wght 200-800, opsz 6-72), so
+   one rule declares its whole weight range. Google declared it at 300,
+   400 and 500 only, and the 600 of an author's name or a venue was the
+   500 with a fake bold smeared on top (F28). The italic file is variable
+   too (wght 200-800, opsz 6-72; Google's latin subset, 147 KB): the
+   authors' line is italic, as on the resume, with the owner's name a 600
+   italic, which the 400-only italic (63 KB) could only fake (check-fonts). JetBrains Mono's file runs 100-400. Optical size
+   follows the font size by itself (font-optical-sizing: auto).
+
+   Why a file of its own: a stylesheet that holds media queries, as
+   site.css does, is re-read whenever the media change, and its font faces
+   were rebuilt with it. Text shown for the first time just then painted in
+   Georgia for a frame: switching to print showed the panels that had been
+   hidden in the fallback (14.1% of the page, measured by check-print). */
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url(../fonts/newsreader-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Newsreader';
+  font-style: italic;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url(../fonts/newsreader-italic-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 100 400;
+  font-display: swap;
+  src: url(../fonts/jetbrains-mono-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}

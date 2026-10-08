@@ -1,0 +1,11 @@
+# Kept on this machine, not published: a free GitHub Pages site is a public
+# repo, so everything committed is readable there even where the site does
+# not serve it. Old versions of the site, the parked hobbies page, and the
+# blank post template (until there is a post).
+_baseline/
+_snapshots/
+_parked/
+blog/post-template.html
+# npm install's output (_tools/package.json)
+node_modules/
+_private/

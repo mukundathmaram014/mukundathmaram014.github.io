@@ -1,0 +1,9 @@
+{
+  "name": "site-tools",
+  "private": true,
+  "description": "Node checks for the site (run-all.js). The only dependency is puppeteer-core, for the headless-browser checks: it drives the system Chrome and never downloads a browser. _tools is underscore-prefixed, so GitHub Pages does not publish it.",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "puppeteer-core": "25.12.0"
+  }
+}

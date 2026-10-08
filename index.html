@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mukund Athmaram</title>
+<meta name="description" content="Mukund Athmaram studies electrical and computer engineering and computer science at Cornell and works on efficient machine learning.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Mukund Athmaram">
+<meta property="og:description" content="Mukund Athmaram studies electrical and computer engineering and computer science at Cornell and works on efficient machine learning.">
+<meta property="og:url" content="https://mukundathmaram014.github.io/">
+<meta property="og:image" content="https://mukundathmaram014.github.io/you.jpg">
+<meta property="og:image:alt" content="Mukund Athmaram">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://mukundathmaram014.github.io/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Cstyle%3E%40media%20(prefers-color-scheme%3Adark)%7B.m%20path%7Bstroke%3A%23E8E8E4%7D.m%20circle%7Bfill%3A%23E8E8E4%7D.h%20path%7Bstroke%3A%231E1E20%7D.h%20circle%7Bfill%3A%231E1E20%7D%7D%3C/style%3E%3Cg%20class%3D%22h%22%3E%3Cpath%20d%3D%22M32%2011%20L50%2045%20L14%2045%20Z%22%20fill%3D%22none%22%20stroke%3D%22%23E8E8E4%22%20stroke-width%3D%2210%22%20stroke-linejoin%3D%22round%22/%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%2211%22%20r%3D%2210%22%20fill%3D%22%23E8E8E4%22/%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2245%22%20r%3D%2210%22%20fill%3D%22%23E8E8E4%22/%3E%3Ccircle%20cx%3D%2214%22%20cy%3D%2245%22%20r%3D%2210%22%20fill%3D%22%23E8E8E4%22/%3E%3C/g%3E%3Cg%20class%3D%22m%22%3E%3Cpath%20d%3D%22M32%2011%20L50%2045%20L14%2045%20Z%22%20fill%3D%22none%22%20stroke%3D%22%231E1E20%22%20stroke-width%3D%224%22%20stroke-linejoin%3D%22round%22/%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%2211%22%20r%3D%227%22%20fill%3D%22%231E1E20%22/%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2245%22%20r%3D%227%22%20fill%3D%22%231E1E20%22/%3E%3Ccircle%20cx%3D%2214%22%20cy%3D%2245%22%20r%3D%227%22%20fill%3D%22%231E1E20%22/%3E%3C/g%3E%3C/svg%3E">
+<script>
+  /* Preload the two faces the first paint needs, so they download alongside
+     the stylesheets instead of once a layout asks for them: on a throttled
+     cold load (60ms RTT, 10 Mbit/s) they started 200ms and arrived 80-100ms
+     sooner. A font is fetched in CORS mode, so the preload must be
+     crossorigin, and a page opened from disk cannot make CORS requests:
+     there it would only log errors, so it is left out, and the fonts load
+     from fonts.css as usual. */
+  if (location.protocol !== 'file:') for (const f of ['newsreader-latin', 'jetbrains-mono-latin']) {
+    const l = document.createElement('link');
+    l.rel = 'preload'; l.as = 'font'; l.type = 'font/woff2'; l.crossOrigin = ''; l.href = 'assets/fonts/' + f + '.woff2';
+    document.head.appendChild(l);
+  }
+</script>
+<link rel="stylesheet" href="assets/css/fonts.css?v=bc6ac8645f">
+<link rel="stylesheet" href="assets/css/site.css?v=a49bc4e356">
+<style>
+  #cosmos { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+  /* The still picture, where the background cannot be drawn - no WebGL, or
+     a lost context that never came back: assets/js/bg/main.js then sets
+     data-bg="static" on <html>. It is the renderer's own frame of the scene
+     at rest (_tools/make-still.js), placed like the live scene: covering
+     the viewport, its horizon (42% down) on the viewport's. Only fetched
+     then; and like the canvas, never printed. */
+  html[data-bg="static"] #cosmos { visibility: hidden; }
+  html[data-bg="static"] body::before {
+    content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background: var(--coat) url(assets/img/bg-still.webp) 50% 42% / cover no-repeat;
+  }
+  @media print { html[data-bg="static"] body::before { display: none; } }
+  /* Without JS every panel shows, as one long read, and the tabs could not
+     switch anything (their #hashes name no element): the bar goes too, and
+     the content starts 32px below the name (28px on a phone). Here, not in
+     site.css: the post template's tabs are real links. */
+  html:not(.js-tabs) .tabs { display: none; }
+  html:not(.js-tabs) .columns { margin-top: 14px; }
+</style>
+<script>document.documentElement.classList.add("js-tabs");</script>
+<script>
+  /* The background's motion, 'paused' or 'running', before anything draws:
+     the visitor's choice from the footer toggle (site.js), else paused
+     under prefers-reduced-motion. assets/js/bg/main.js starts that way. */
+  (function () {
+    let m = null;
+    try { m = localStorage.getItem('bg-motion'); } catch (e) { /* storage blocked */ }
+    if (m !== 'paused' && m !== 'running') m = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches ? 'paused' : 'running';
+    document.documentElement.dataset.motion = m;
+  })();
+</script>
+</head>
+<body>
+<canvas id="cosmos" aria-hidden="true"></canvas>
+<div class="shell">
+<header class="masthead">
+  <h1 class="masthead-title"><a class="brand" href="#"><span class="word">Mukund Athmaram</span></a></h1>
+</header>
+<nav class="tabs" role="tablist" aria-label="Sections">
+  <a class="tab" role="tab" id="tab-about" data-tab="about" href="#about" aria-controls="panel-about" aria-selected="true" tabindex="0">about</a>
+  <a class="tab" role="tab" id="tab-research" data-tab="research" href="#research" aria-controls="panel-research" aria-selected="false" tabindex="-1">research</a>
+  <a class="tab" role="tab" id="tab-writing" data-tab="writing" href="#writing" aria-controls="panel-writing" aria-selected="false" tabindex="-1">writing</a>
+</nav>
+<div class="columns">
+<aside class="rail">
+  <div class="portrait"><img src="you.jpg" alt="Mukund"></div>
+  <nav class="social" aria-label="Elsewhere">
+    <a href="mailto:mukund.athmaram@gmail.com" data-print="mukund.athmaram@gmail.com" title="email"><svg class="ico ico--line" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="M3.5 6.5l8.5 6.5 8.5-6.5"/></svg><span class="sr-only">email</span></a>
+    <a href="https://scholar.google.com/citations?user=KzhwekAAAAAJ" data-print="scholar.google.com/citations?user=KzhwekAAAAAJ" title="google scholar"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5.24 13.77 0 9.5 12 0l12 9.5-5.24 4.27A7.5 7.5 0 0 0 12 9.5a7.5 7.5 0 0 0-6.76 4.27zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg><span class="sr-only">google scholar</span></a>
+    <a href="https://github.com/mukundathmaram014" data-print="github.com/mukundathmaram014" title="github"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57l-.02-2.04c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.33-1.76-1.33-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .32.21.69.82.57A12 12 0 0 0 12 .3"/></svg><span class="sr-only">github</span></a>
+    <a href="https://linkedin.com/in/mukund-athmaram" data-print="linkedin.com/in/mukund-athmaram" title="linkedin"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zm1.78 13.02H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg><span class="sr-only">linkedin</span></a>
+    <a href="https://x.com/mathmara_146" data-print="x.com/mathmara_146" title="x"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18.9 1.15h3.68l-8.04 9.19L24 22.85h-7.41l-5.8-7.58-6.64 7.58H.47l8.6-9.83L0 1.15h7.59l5.24 6.93zm-1.29 19.5h2.04L6.49 3.24H4.3z"/></svg><span class="sr-only">x</span></a>
+  </nav>
+</aside>
+<main>
+<section class="panel is-active" id="panel-about">
+  <p>Hi! I study electrical and computer engineering and computer science at Cornell.</p>
+  <p>I'm currently doing ML research at AMD, where I work on LLM inference optimization and interpretability. My research so far has mostly focused on quantization.</p>
+  <p>I'm also a member of the <a href="https://zhang.ece.cornell.edu/">Zhang Research Group</a> at Cornell, where I was part of a project that involved building a mini TPU on an FPGA. I led its system design and compiler development.</p>
+  <h2 class="label mono" style="margin-top:46px;">experience</h2>
+  <div class="xp">
+    <div class="xp__head"><span class="xp__org">AMD</span><span class="xp__time mono now">since may 2026</span></div>
+    <div class="xp__role">Research Intern</div>
+  </div>
+  <div class="xp">
+    <div class="xp__head"><span class="xp__org">Cornell Zhang Research Group</span><span class="xp__time mono now">since aug 2025</span></div>
+    <div class="xp__role">Research Assistant</div>
+  </div>
+  <div class="xp">
+    <div class="xp__head"><span class="xp__org">NopalCyber</span><span class="xp__time mono">jun &ndash; aug 2025</span></div>
+    <div class="xp__role">Software Engineer Intern</div>
+  </div>
+  <h2 class="label mono" style="margin-top:46px;">education</h2>
+  <div class="xp">
+    <div class="xp__head"><span class="xp__org">Cornell University</span><span class="xp__time mono">expected may 2028</span></div>
+    <div class="xp__role">B.S. Electrical and Computer Engineering and Computer Science</div>
+  </div>
+</section>
+<section class="panel" id="panel-research">
+  <h2 class="label mono">research</h2>
+  <!-- As on the resume: each entry the title (an <h3>, so a heading jump
+       goes from paper to paper), then the authors (your name the <strong>)
+       with the venue and year on the right. A link row can follow once
+       there is something to point at:
+         <div class="links"><a class="btn" href="...">pdf</a></div> -->
+  <div class="pub">
+    <h3 class="ptitle">TempQuant: Learning Adaptive Temperatures for Quantized Language Models</h3>
+    <div class="pub__meta"><span class="authors"><strong>Mukund Athmaram</strong>, Liang Ma, Manoj Rao</span><span class="venue">Under review, 2026</span></div>
+    <div class="links"><span class="btn pending">coming soon</span></div>
+  </div>
+  <div class="pub">
+    <h3 class="ptitle">The Price of Precision: A Calibrated Cost Model for Mixed-Precision LLM Serving</h3>
+    <div class="pub__meta"><span class="authors"><strong>Mukund Athmaram</strong>, Manoj Rao, Liang Ma</span><span class="venue">NeurIPS ODI &amp; AXIOM workshops, 2026</span></div>
+    <div class="links"><!-- its AXIOM page: https://openreview.net/forum?id=xNU0sGOVhA -->
+      <a class="btn" href="https://openreview.net/forum?id=4VoMlQdwvT">openreview</a>
+    </div>
+  </div>
+  <div class="pub">
+    <h3 class="ptitle">What MoE Routing Controls: Causal Interventions on Expert Trajectories</h3>
+    <div class="pub__meta"><span class="authors"><strong>Mukund Athmaram</strong>, Manoj Rao, Liang Ma</span><span class="venue">NeurIPS InterpScience workshop, 2026</span></div>
+    <!-- not public yet: https://openreview.net/forum?id=mcR9et16wu -->
+    <div class="links"><span class="btn pending">coming soon</span></div>
+  </div>
+  <div class="pub">
+    <h3 class="ptitle">Context-Aware Precision Scheduling for Small Language Models</h3>
+    <div class="pub__meta"><span class="authors"><strong>Mukund Athmaram</strong>, Manoj Rao, Liang Ma</span><span class="venue">NeurIPS SLM-Agents workshop, 2026</span></div>
+    <div class="links"><a class="btn" href="https://openreview.net/forum?id=XuS9AhA2zC">openreview</a></div>
+  </div>
+</section>
+<section class="panel" id="panel-writing">
+  <h2 class="label mono">writing</h2>
+  <p class="note">Coming soon.</p>
+</section>
+</main>
+</div>
+<footer class="foot">
+  <span class="foot-right">
+    <button type="button" class="motion" id="motion" aria-pressed="false" hidden><svg viewBox="0 0 10 10" aria-hidden="true" focusable="false"><path d="M2 1.5h2v7H2zM6 1.5h2v7H6z"/></svg>pause motion</button>
+    <span class="dice" id="dice" title="roll" role="button" tabindex="0" aria-label="roll the dice" hidden>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="1.5" y="1.5" width="21" height="21" rx="4" fill="none" stroke="currentColor" stroke-width="1.8"/><g class="pips" fill="currentColor"></g></svg>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="1.5" y="1.5" width="21" height="21" rx="4" fill="none" stroke="currentColor" stroke-width="1.8"/><g class="pips" fill="currentColor"></g></svg>
+    </span>
+    <span class="sr-only" id="dice-out" role="status"></span>
+  </span>
+</footer>
+</div>
+<script src="assets/js/bg/scene.js?v=9179eb7155"></script>
+<script src="assets/js/bg/governor.js?v=5410ed7c41"></script>
+<script src="assets/js/bg/render-webgl.js?v=20a50a113a"></script>
+<script src="assets/js/bg/main.js?v=8a842f80c7"></script>
+<script src="assets/js/site.js?v=85f420dd4d"></script>
+</body>
+</html>

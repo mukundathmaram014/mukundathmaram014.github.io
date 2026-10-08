@@ -1,0 +1,578 @@
+/* ===========================================================
+   site.css — the shared shell for every page.
+   Edit tokens here once; all pages follow.
+   Page-specific rules stay in each file's own <style> block.
+   =========================================================== */
+
+/* The web fonts are in fonts.css, linked just before this file. */
+
+:root {
+  /* ground: --coat is the page, --surface is the card on top of it */
+  --coat:     #DCDCD8;
+  --surface:  #E8E8E4;
+  --deeper:   #232326;
+  --panel:    #D2D2CE;
+
+  /* ink. --mist is the secondary text: inactive tabs, rail links, dates,
+     authors, venues, notes, the footer. Like body text it must clear 4.5:1,
+     and #66666C is 4.64:1 on --surface, the card, which is where all of it
+     sits (it was #74747A, 3.78:1). The lightest grey of this tint that
+     passes is #68686E at 4.51; this keeps a little margin. It does not pass
+     on --coat (4.15:1), so mist text stays on the card. --faint (1.91:1 on
+     the card) is too light for anything that has to be read. */
+  --ink:      #1E1E20;
+  --body:     #3C3C3E;
+  --mist:     #66666C;
+  --faint:    #A9A9AD;
+
+  /* lines & washes */
+  --hairline: #C2C2BE;
+  --hover:    rgba(30, 30, 32, 0.045);
+  --divider:  linear-gradient(90deg,
+                rgba(194,194,190,0)   0%,
+                rgba(194,194,190,.92) 18%,
+                rgba(140,140,136,.72) 50%,
+                rgba(194,194,190,.92) 82%,
+                rgba(194,194,190,0)   100%);
+
+  /* accent — the one spot of colour. Swap this line to retune the whole site.
+     #2E7366 is about as vivid as teal gets while still clearing 4.5:1 on
+     --surface (it lands at 4.55). Anything brighter — #15796B, #00796B —
+     drops under 4.4 and fails AA for body text.
+     Alternatives that also pass: #2A6157 deep teal, #33624A deep green,
+     #3C7355 mid green. --accent-deep is accent text on a grey --accent
+     fails on: the resting .btn pills, which paint their own --coat fill
+     (--accent 4.06:1 there, --accent-deep 6.10:1; hovered, a pill moves onto
+     --surface and goes back to --accent, 4.55:1), and the hovered selected
+     tab, on the hover wash (4.19:1 against 6.27:1). The background's
+     mountains draw their lines in it too (render-webgl.js LINE_RGB, a copy:
+     keep the two equal). */
+  --accent:      #2E7366;
+  --accent-deep: #22564C;
+
+  /* metrics */
+  --measure:  62ch;
+  --shell:    860px;
+  --rail:     160px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* Always reserve the scrollbar's gutter. The panels differ a lot in height,
+   so the page scrolls on one tab and fits on another; where scrollbars take
+   layout space (Windows: 15px) the bar came and went on a tab switch, and
+   the centred card hopped sideways by 7.5px, or below a 908px window changed
+   width and reflowed. Reserved, the page lays out at one width on every tab,
+   and #cosmos keeps one box, which is what the background is sized from
+   (not documentElement.clientWidth: with no scrollbar showing, Chrome counts
+   the unused gutter in it). With no scrollbar, the gutter is a plain strip
+   of --coat. */
+html { scrollbar-gutter: stable; }
+
+body {
+  background: var(--coat);
+  color: var(--body);
+  font-family: 'Newsreader', Georgia, serif;
+  font-size: 18px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  padding: 28px 24px;
+}
+
+::selection { background: #C6C6CC; color: var(--ink); }
+
+a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--faint);
+  text-underline-offset: 3px;
+  transition: text-decoration-color 160ms ease;
+}
+a:hover, a:focus-visible { text-decoration-color: var(--ink); }
+a:focus-visible { outline: 1.5px solid var(--ink); outline-offset: 3px; border-radius: 1px; }
+
+.mono {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mist);
+  font-weight: 400;
+}
+
+/* ---------- the card ---------- */
+.shell {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: var(--shell);
+  margin: 0 auto;
+  padding: 0 40px;
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: 8px;
+  box-shadow: 0 4px 24px rgba(30, 30, 32, 0.06);
+}
+
+/* ---------- masthead ---------- */
+.masthead { padding: 32px 0 18px; }
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 13px;
+  text-decoration: none;
+}
+.brand .word {
+  font-family: 'Newsreader', Georgia, serif;
+  font-size: 28px;
+  font-weight: 500;
+  color: var(--ink);
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+}
+/* The name is the page's h1 on index.html only. On a post the h1 is the
+   post's title, so there the name is a <p> (audit F38): a heading jump
+   landed on "Mukund" first. */
+.masthead-title { font-size: inherit; font-weight: inherit; }
+
+/* ---------- tab bar (real page links, styled like tabs) ---------- */
+.tabs {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  margin: 0 0 32px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.tabs::-webkit-scrollbar { display: none; }
+.tabs::after {
+  content: "";
+  position: absolute;
+  right: 0; bottom: 0; left: 0;
+  height: 1px;
+  background: var(--divider);
+}
+.tab {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 13px 12px;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: lowercase;
+  color: var(--mist);
+  text-decoration: none;
+  white-space: nowrap;
+  border-radius: 4px 4px 0 0;
+  transition: color 150ms ease, background-color 150ms ease;
+}
+.tab::after {
+  content: "";
+  position: absolute;
+  right: 6px; bottom: 0; left: 6px;
+  height: 2px;
+  border-radius: 2px 2px 0 0;
+  background: var(--accent);
+  opacity: 0;
+  transform: scaleX(0.6);
+  transition: opacity 150ms ease, transform 200ms ease;
+}
+/* The selected tab (index.html's tablist), or a link's current one. On a
+   post the writing link is aria-current="true", the section the post
+   belongs to: "page" said it was the page being read, on a link that leads
+   away from it. "page" stays for a tab that is the page itself. */
+.tab[aria-current="page"],
+.tab[aria-current="true"],
+.tab[aria-selected="true"] { color: var(--accent); }
+.tab[aria-current="page"]::after,
+.tab[aria-current="true"]::after,
+.tab[aria-selected="true"]::after { opacity: 1; transform: scaleX(1); }
+/* Hover only with a pointer that can hover: on a touch screen :hover sticks
+   to the tab just tapped, which is the selected one. On the hover wash
+   --accent is 4.19:1, under AA for 11px text, so the selected tab deepens
+   to --accent-deep there (6.27:1). */
+@media (hover: hover) {
+  .tab:hover { color: var(--body); background: var(--hover); text-decoration: none; }
+  .tab[aria-current="page"]:hover,
+  .tab[aria-current="true"]:hover,
+  .tab[aria-selected="true"]:hover { color: var(--accent-deep); }
+}
+/* The ring goes inside the tab. .tabs scrolls sideways on narrow screens,
+   and overflow-x: auto clips both axes at its padding box, which is the
+   tabs' own edges: the global ring, drawn 3px outside, kept only the
+   vertical slivers between tabs. Inset 4px it sits in the padding, clear of
+   the label and of the 2px underline. The radius undoes a:focus-visible's. */
+.tab:focus-visible { outline: 1.5px solid var(--ink); outline-offset: -4px; border-radius: 4px 4px 0 0; }
+/* Forced colours (Windows Contrast themes) repaint every background in the
+   theme's Canvas colour and every link in LinkText, which took away both
+   marks of the selected tab: the three looked the same. Keep the bar, in
+   the theme's own Highlight. */
+@media (forced-colors: active) {
+  .tab[aria-current="page"]::after,
+  .tab[aria-current="true"]::after,
+  .tab[aria-selected="true"]::after { forced-color-adjust: none; background: Highlight; }
+}
+
+/* ---------- rail | content ---------- */
+.columns {
+  display: grid;
+  grid-template-columns: var(--rail) minmax(0, 1fr);
+  gap: 36px;
+  align-items: start;
+}
+.columns.full { grid-template-columns: minmax(0, 1fr); }
+.columns.full .rail { display: none; }
+
+.rail { min-width: 0; }
+.rail .portrait {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: linear-gradient(165deg, #DEDEDA, #CECECA);
+  border: 1px solid var(--hairline);
+  border-radius: 3px;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+.rail .portrait img { width: 100%; height: 100%; object-fit: cover; }
+
+/* The portrait belongs to the about tab only. The rail keeps its width either
+   way, so switching tabs never reflows the content column. Guarded on
+   .js-tabs: with no JS there is no active tab, and the portrait stays. */
+html.js-tabs body:not([data-tab="about"]) .rail .portrait { display: none; }
+/* The rail's links too, on the screen: they belong with the portrait on the
+   about tab. In print every panel shows and the rail lists its addresses,
+   whichever tab it was printed from. */
+@media screen { html.js-tabs body:not([data-tab="about"]) .rail .social { display: none; } }
+
+/* The rail's links, as logos: a row of marks in --mist (4.64:1 on the card),
+   --ink on hover. Each keeps its name as visually hidden text (.sr-only),
+   which is what a screen reader says and what the printed rail shows
+   beside the address (print, below), and as its title, the hover tooltip. */
+.social { display: flex; gap: 2px; margin-left: -6px; }
+.social a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: lowercase;
+  color: var(--mist);
+  text-decoration: none;
+  transition: color 150ms ease, background-color 150ms ease;
+}
+.social a:hover { color: var(--ink); background: var(--hover); }
+.social .ico { width: 17px; height: 17px; flex: 0 0 auto; fill: currentColor; }
+.social .ico--line { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linejoin: round; stroke-linecap: round; }
+
+main { min-width: 0; }
+.label { display: block; margin-bottom: 34px; font-weight: 400; color: var(--accent); }
+main p { max-width: var(--measure); }
+main p + p { margin-top: 1em; }
+
+/* ---------- footer, inside the card ---------- */
+/* With the motion toggle the row needs 322px: in a window under 400px
+   wide (most phones) the right-hand group wraps to a line of its own,
+   still at the right. */
+.foot {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px 14px;
+  margin-top: 56px;
+  padding: 18px 0 26px;
+  border-top: 1px solid var(--hairline);
+}
+.foot-right { display: flex; align-items: center; gap: 18px; margin-left: auto; }
+/* The glyph is all that shows the dice control is there, so it needs the
+   3:1 of non-text contrast: --mist is 4.64:1 on the card (--faint was
+   1.91:1). Hovered or focused it darkens to --body, 8.96:1. */
+.dice { display: flex; gap: 7px; cursor: pointer; }
+/* The dice ship [hidden] and site.js reveals them, as it does the motion
+   toggle: site.js draws the pips and answers a click, so without it they
+   were a focusable "roll the dice" button that showed two empty squares
+   and did nothing. The display above would beat the browser's own [hidden]
+   rule, hence this one. */
+.dice[hidden] { display: none; }
+.dice:focus-visible { outline: 1.5px solid var(--ink); outline-offset: 3px; border-radius: 3px; }
+.dice svg { width: 19px; height: 19px; color: var(--mist); transition: color 160ms ease, transform 250ms ease; }
+.dice svg:first-child { transform: rotate(-8deg); }
+.dice svg:last-child { transform: rotate(7deg); }
+.dice:hover svg, .dice:focus-visible svg { color: var(--body); }
+.dice:active svg:first-child { transform: rotate(-8deg) translateY(-2px); }
+.dice:active svg:last-child { transform: rotate(7deg) translateY(-2px); }
+
+/* The background's pause toggle (WCAG 2.2.2 Pause, Stop, Hide; site.js).
+   A mono label like the tabs and the rail links. The APG toggle pattern:
+   the label never changes, aria-pressed carries the state, and pressed
+   (paused) is drawn filled. It ships [hidden] and site.js reveals it, so a
+   visitor without JS never meets a button that does nothing; the author
+   display below would beat the browser's own [hidden] rule, hence the
+   [hidden] one. Measured: label 8.96:1 at rest, 12.49:1 hovered, 13.55:1
+   pressed (8.96:1 pressed and hovered); border 4.64:1 (1.4.11 asks 3:1).
+   The target is 24px tall (2.5.8) and keeps the footer row at its height
+   through the negative margin. */
+.motion {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 24px;
+  margin: -3px 0;
+  padding: 0 9px;
+  border: 1px solid var(--mist);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--body);
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: lowercase;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color 150ms ease, background-color 150ms ease, border-color 150ms ease;
+}
+.motion[hidden] { display: none; }
+/* Where the background is a still picture (main.js sets data-bg="static"
+   on <html> when WebGL cannot draw it) nothing moves, so there is nothing
+   to pause: the toggle goes, whatever site.js revealed. */
+html[data-bg="static"] #motion { display: none; }
+.motion svg { width: 10px; height: 10px; fill: currentColor; flex: 0 0 auto; }
+/* 6px out, not the links' 3px: pressed, the button is itself ink, and the
+   ring needs card showing between the two to read as a ring. */
+.motion:focus-visible { outline: 1.5px solid var(--ink); outline-offset: 6px; }
+.motion[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--surface); }
+@media (hover: hover) {
+  .motion:hover { color: var(--ink); background: var(--hover); }
+  .motion[aria-pressed="true"]:hover { color: var(--surface); background: var(--body); border-color: var(--body); }
+}
+/* Forced colours paint every background in the theme's Canvas colour,
+   which would leave pressed and unpressed looking the same. */
+@media (forced-colors: active) {
+  .motion[aria-pressed="true"] { forced-color-adjust: none; background: Highlight; border-color: Highlight; color: HighlightText; }
+}
+
+/* Text for assistive technology only: in the accessibility tree, not on
+   screen (the dice's live region; what a pending slot is). */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ---------- narrow ---------- */
+@media (max-width: 860px) {
+  .columns { grid-template-columns: minmax(0, 1fr); gap: 26px; }
+  .rail {
+    display: flex;
+    align-items: flex-start;
+    gap: 22px;
+  }
+  .rail .portrait { width: 132px; flex: 0 0 auto; margin-bottom: 0; }
+  .social { flex: 1; align-content: start; }
+}
+@media (max-width: 640px) {
+  body { padding: 12px 10px; }
+  .shell { padding: 0 20px; border-radius: 6px; }
+  .masthead { padding: 24px 0 14px; }
+  .brand .word { font-size: 24px; }
+  .tabs { margin-bottom: 26px; }
+  .foot { margin-top: 40px; }
+}
+
+/* ---------- in-page tab panels ----------
+   The <script> in <head> sets .js-tabs on <html>. Without JS that class never
+   lands, every panel stays visible, and the page degrades to one long read. */
+html.js-tabs .panel { display: none; }
+html.js-tabs .panel.is-active { display: block; }
+/* The open panel is a Tab stop (site.js gives it tabindex 0: it holds
+   nothing focusable of its own, the APG tabs pattern; audit F36), so the
+   keyboard needs to see when it is there. A click inside it focuses it
+   too, and draws nothing. */
+.panel:focus:not(:focus-visible) { outline: none; }
+.panel:focus-visible { outline: 1.5px solid var(--ink); outline-offset: 6px; border-radius: 3px; }
+/* Stacked panels (no JS; print) are spaced apart. Scoped to that case,
+   because a sibling combinator matches a display: none neighbour too:
+   unscoped, research and writing started 56px below where about does. */
+html:not(.js-tabs) .panel + .panel { margin-top: 56px; }
+
+/* ---------- publications ---------- */
+/* As on the resume: the title, then the authors in italics with the
+   venue and year on the right of their line (the resume puts a long
+   title's venue there too; in this column every title is long). */
+.pub + .pub { margin-top: 26px; }
+
+.pub .ptitle {
+  display: block;
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1.35;
+  margin: 0;
+}
+.pub .ptitle a { text-decoration: none; }
+.pub .ptitle a:hover { text-decoration: underline; text-decoration-color: var(--ink); }
+
+.pub__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 2px 18px;
+  margin-top: 4px;
+}
+/* author list, in italics; your own name is the <strong> */
+.pub .authors {
+  font-size: 16px;
+  line-height: 1.55;
+  font-style: italic;
+  color: var(--mist);
+}
+.pub .authors strong { color: var(--accent); font-weight: 600; }
+/* venue and year, as the resume sets them: plain, on the right (under the
+   authors, where the column is too narrow for both) */
+.pub .venue {
+  margin-left: auto;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--mist);
+  white-space: nowrap;
+}
+
+/* the row of pill links under each entry */
+.pub .links { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 12px; }
+.btn {
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 4px 11px;
+  border: 1px solid var(--hairline);
+  border-radius: 7px;
+  background: var(--coat);
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.13em;
+  text-transform: lowercase;
+  color: var(--accent-deep);
+  text-decoration: none;
+  transition: background-color 160ms ease, border-color 160ms ease,
+              color 160ms ease, transform 160ms ease;
+}
+a.btn:hover {
+  border-color: var(--accent);
+  background: var(--surface);
+  color: var(--accent);
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+a.btn:active { transform: translateY(0); }
+a.btn:focus-visible { outline: 1.5px solid var(--accent); outline-offset: 3px; }
+
+/* a slot that is reserved but has nothing to point at yet — not a link,
+   so it cannot be clicked into a dead end. Swap <span> for <a href> when real.
+   Its label still has to be read: --mist, 4.64:1 (--faint was 1.91:1). The
+   dashed outline and the missing fill are what say it is not a link yet. */
+.btn.pending {
+  color: var(--mist);
+  border-style: dashed;
+  background: transparent;
+  cursor: default;
+}
+
+/* Reduced motion: nothing slides, grows or hops; fades and colour changes
+   stay. The tab underline is full width in both states and only fades (it
+   grew from 0.6 to full width, 11-16px at each end, on every tab change),
+   and the dice keep their tilt but lose the 2px hop. */
+@media (prefers-reduced-motion: reduce) {
+  a.btn, a.btn:hover { transition: none; transform: none; }
+  .tab::after { transform: none; transition: opacity 150ms ease; }
+  .dice svg { transition: color 160ms ease; }
+  .dice:active svg:first-child { transform: rotate(-8deg); }
+  .dice:active svg:last-child { transform: rotate(7deg); }
+}
+
+
+/* ---------- writing list ---------- */
+ul.posts { list-style: none; }
+ul.posts li + li { margin-top: 22px; }
+a.post { display: block; text-decoration: none; }
+.post-line { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; }
+.post-title { color: var(--ink); font-weight: 400; }
+.post-date { white-space: nowrap; }
+.post-summary { display: block; margin-top: 5px; color: var(--mist); font-size: 16px; line-height: 1.55; max-width: var(--measure); }
+a.post:hover .post-title { text-decoration: underline; text-decoration-color: var(--ink); }
+.cat { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 11px; vertical-align: 1px; }
+.cat-sys { background: #7A8B7C; }
+.cat-hw { background: #6E7B8B; }
+.cat-fight { background: #9C6B57; }
+/* A post's meta row is a flex row with its own gap; the margin would add
+   to it (21px, not 10px). Posts take the dot from here: the template used
+   to declare its own copy, which a retune here never reached (audit F53). */
+.post-meta .cat { margin-right: 0; }
+
+.note { color: var(--mist); font-style: italic; max-width: var(--measure); }
+
+/* ---------- experience / education ----------
+   A plain list, deliberately with no connecting line: these roles overlap and
+   several are ongoing, so a rail would imply a sequence that doesn't exist. */
+.xp + .xp { margin-top: 16px; }
+
+.xp__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px 20px;
+  flex-wrap: wrap;
+}
+.xp__org { color: var(--ink); font-weight: 500; font-size: 17.5px; line-height: 1.35; }
+.xp__time { white-space: nowrap; color: var(--mist); }
+.xp__time.now { color: var(--accent); }
+.xp__role { margin-top: 2px; color: var(--body); font-size: 16.5px; line-height: 1.5; }
+
+/* ---------- print ----------
+   On paper the page is the no-JS long read: every panel and the portrait,
+   no tab bar (nothing would say the other sections exist), on white. The
+   background art goes. A canvas is content, not a background, so it printed
+   even with background graphics off, and being fixed it repeated behind the
+   text on every page, while the card's grey that kept the text readable was
+   dropped. The controls that do nothing on paper go too; the hide is
+   !important so no inline style set at runtime can bring them back. */
+@media print {
+  #cosmos, .tabs, .dice, #motion, .btn.pending { display: none !important; }
+  html, body, .shell { background: #fff; }
+  body { padding: 0; }
+  .shell { max-width: none; padding: 0; border: 0; border-radius: 0; box-shadow: none; }
+  html.js-tabs .panel { display: block; }
+  .panel + .panel { margin-top: 56px; }
+  html.js-tabs body:not([data-tab="about"]) .rail .portrait { display: flex; }
+  .pub, .xp { break-inside: avoid; }
+  .label { break-after: avoid; }
+  /* A link prints as its label alone, and "email github linkedin" left the
+     reader no way to reach the person. Each rail link prints its address
+     after the label: data-print, the address as one would type it (no
+     mailto:, no https://), else the href itself; as written (no lowercasing
+     or tracking), in --body, 11.01:1 on white. On A4 or Letter (718 or
+     739px wide) each link stays one 30px row. Where the rail is 160px wide (paper wider
+     than 860px) the row wraps and the address takes lines of its own,
+     broken where the column ends: an address has no break opportunity of
+     its own, and without overflow-wrap the link grew to 201px, out of the
+     rail. */
+  .social { display: grid; gap: 1px; margin-left: 0; }
+  .social a { width: auto; height: auto; min-height: 30px; justify-content: flex-start; gap: 9px; flex-wrap: wrap; row-gap: 0; }
+  .social a::after { content: attr(href); min-width: 0; color: var(--body); text-transform: none; letter-spacing: 0; overflow-wrap: anywhere; }
+  .social a[data-print]::after { content: attr(data-print); }
+}
