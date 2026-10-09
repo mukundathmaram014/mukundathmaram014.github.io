@@ -306,8 +306,13 @@
   /* Every sample, with its time: Chrome hands the page one pointermove per
      frame and folds the rest into getCoalescedEvents(), and the scene reads
      the path back at a fixed short delay (scene.js smoothAt), so it needs
-     them all to pace the ring and the field evenly. */
+     them all to pace the ring and the field evenly. A finger is not a
+     cursor: the scene animates on a touch screen but does not answer it (the
+     owner: interactivity "wont be easy to do on a phone"), so a drag that
+     scrolls the page does not dent the floor or bloom the mountains. A
+     mouse or a pen still does, on any device. */
   window.addEventListener('pointermove', e => {
+    if (e.pointerType === 'touch') return;
     const list = typeof e.getCoalescedEvents === 'function' ? e.getCoalescedEvents() : null;
     if (list && list.length) for (const c of list) Bg.pointerAt(c.clientX - left, c.clientY - top, c.timeStamp);
     else Bg.pointerAt(e.clientX - left, e.clientY - top, e.timeStamp);
