@@ -191,3 +191,152 @@
   });
   btn.hidden = false;
 })();
+
+/* thoughts: hovering a paper or a post (or tabbing into one) shows its
+   <template class="gist"> - a line drawing and a sentence - in the empty rail
+   beside it, with a thin branch drawn to it from the title. For a mouse or a
+   pen only, and only where the rail is a column of its own; site.css has the
+   look, under "thoughts". */
+(function () {
+  if (typeof document.querySelector !== 'function' || typeof document.querySelectorAll !== 'function' || !window.matchMedia) return;
+  const notes = Array.prototype.filter.call(document.querySelectorAll('template.gist'),
+    t => t.tagName === 'TEMPLATE' && t.content && t.parentElement);
+  const cols = document.querySelector('.columns');
+  const rail = cols && cols.querySelector('.rail');
+  if (!notes.length || !rail) return;
+  const fine = window.matchMedia('(hover: hover) and (pointer: fine)');
+  const still = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const NS = 'http://www.w3.org/2000/svg';
+  const box = document.createElement('div');
+  box.className = 'thought';
+  box.setAttribute('aria-hidden', 'true');
+  const branch = document.createElementNS(NS, 'svg');
+  branch.setAttribute('class', 'branch');
+  branch.setAttribute('aria-hidden', 'true');
+  const path = document.createElementNS(NS, 'path');
+  path.setAttribute('pathLength', '1');
+  branch.appendChild(path);
+  cols.appendChild(branch);
+  cols.appendChild(box);
+  let current = null, hideTimer = 0, raf = 0;
+
+  function hide() {
+    window.clearTimeout(hideTimer);
+    hideTimer = window.setTimeout(() => {
+      box.classList.remove('on');
+      branch.classList.remove('on');
+      current = null;
+      const fig = box.querySelector('svg');
+      if (fig && fig.pauseAnimations) fig.pauseAnimations();
+    }, 60);
+  }
+  function show(item, tpl) {
+    window.clearTimeout(hideTimer);
+    if (!fine.matches) return;
+    const c = cols.getBoundingClientRect(), r = rail.getBoundingClientRect();
+    const head = item.querySelector('.ptitle, .post-title') || item;
+    const h = head.getBoundingClientRect();
+    /* the rail's column, short of the branch's run to the title */
+    const w = Math.min(r.width - 10, h.left - r.left - 34);
+    if (w < 120) { hide(); return; }
+    if (current !== item) {
+      current = item;
+      box.classList.remove('on');
+      branch.classList.remove('on');
+      box.replaceChildren(tpl.content.cloneNode(true));
+      /* the drawing loops; where motion is reduced or paused it holds one
+         frame instead, the moment its data-still names */
+      const fig = box.querySelector('svg');
+      if (fig && fig.pauseAnimations && (still.matches || document.documentElement.dataset.motion === 'paused')) {
+        fig.pauseAnimations();
+        fig.setCurrentTime(+fig.getAttribute('data-still') || 0);
+      }
+    }
+    box.style.left = (r.left - c.left) + 'px';
+    box.style.width = w + 'px';
+    /* centred on the item, every one alike (the last runs on into the space
+       above the footer rather than rising) */
+    const it = item.getBoundingClientRect();
+    const top = Math.max(0, it.top - c.top + (it.height - box.offsetHeight) / 2);
+    box.style.top = top + 'px';
+    const fig = box.querySelector('svg');
+    const lineH = parseFloat(window.getComputedStyle(head).lineHeight) || 24;
+    const sx = h.left - c.left - 8, sy = h.top - c.top + lineH / 2;
+    const fr = fig && fig.getBoundingClientRect();
+    const ex = r.left - c.left + w + 8, ey = fr ? fr.top - c.top + fr.height / 2 : top + 10;
+    path.setAttribute('d', 'M ' + sx + ' ' + sy + ' C ' + (sx - 14) + ' ' + sy + ', ' + (ex + 14) + ' ' + ey + ', ' + ex + ' ' + ey);
+    window.cancelAnimationFrame(raf);
+    /* two frames: the cleared state paints first, so each thought draws anew */
+    raf = window.requestAnimationFrame(() => {
+      raf = window.requestAnimationFrame(() => {
+        box.classList.add('on');
+        branch.classList.add('on');
+      });
+    });
+  }
+  for (const tpl of notes) {
+    const item = tpl.parentElement;
+    item.addEventListener('pointerenter', e => { if (e.pointerType !== 'touch') show(item, tpl); });
+    item.addEventListener('pointerleave', hide);
+    item.addEventListener('focusin', () => show(item, tpl));
+    item.addEventListener('focusout', e => { if (!item.contains(e.relatedTarget)) hide(); });
+  }
+  window.addEventListener('resize', hide);
+})();
+
+/* clips: an <img class="clip" data-clip="....mp4"> (the tea panel's) is the
+   first frame of a short muted loop. While it is on screen and motion runs,
+   the clip plays over it like a gif; made only then, so a visit that never
+   opens the panel never fetches it. It is aria-hidden: the picture's alt
+   says what it shows, and its media buttons would be stops that do nothing
+   useful. Where the visitor has paused motion, or asked for less of it, the
+   still frame shows instead: the state the background follows (data-motion
+   and the 'bgmotion' event, under "motion" above). The background pausing
+   itself for speed ({ reason: 'performance' }) is not a choice and leaves
+   it be. */
+(function () {
+  if (typeof document.querySelectorAll !== 'function') return;
+  const stills = Array.prototype.filter.call(document.querySelectorAll('img.clip[data-clip]'), i => i.parentNode);
+  if (!stills.length) return;
+  let paused = document.documentElement.dataset.motion === 'paused';
+  const inView = new Set(), clips = new Map();
+  function clipFor(img) {
+    const v = document.createElement('video');
+    v.muted = true;
+    v.loop = true;
+    v.playsInline = true;
+    v.setAttribute('muted', '');
+    v.setAttribute('playsinline', '');
+    v.setAttribute('aria-hidden', 'true');
+    v.tabIndex = -1;
+    v.poster = img.currentSrc || img.src;
+    v.src = img.getAttribute('data-clip');
+    img.parentNode.appendChild(v);
+    return v;
+  }
+  function sync() {
+    for (const img of stills) {
+      const run = !paused && inView.has(img);
+      let v = clips.get(img);
+      if (run && !v) { v = clipFor(img); clips.set(img, v); }
+      if (!v) continue;
+      v.hidden = paused;
+      if (run) {
+        const p = v.play();
+        if (p && p.catch) p.catch(() => { /* autoplay refused: the still shows */ });
+      } else v.pause();
+    }
+  }
+  document.addEventListener('bgmotion', e => {
+    const d = (e && e.detail) || {};
+    if (d.reason === 'performance') return;
+    paused = !!d.paused;
+    sync();
+  });
+  if (!('IntersectionObserver' in window)) return;
+  const io = new window.IntersectionObserver(entries => {
+    for (const en of entries) { if (en.isIntersecting) inView.add(en.target); else inView.delete(en.target); }
+    sync();
+  });
+  stills.forEach(i => io.observe(i));
+})();

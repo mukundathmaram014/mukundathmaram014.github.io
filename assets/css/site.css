@@ -253,7 +253,8 @@ html.js-tabs body:not([data-tab="about"]) .rail .portrait { display: none; }
    --ink on hover. Each keeps its name as visually hidden text (.sr-only),
    which is what a screen reader says and what the printed rail shows
    beside the address (print, below), and as its title, the hover tooltip. */
-.social { display: flex; gap: 2px; margin-left: -6px; }
+/* five marks a row, as wide as the photo above; the last row centred under it */
+.social { display: flex; flex-wrap: wrap; justify-content: center; gap: 2px; margin-left: -6px; max-width: calc(5 * 30px + 4 * 2px); }
 .social a {
   display: flex;
   align-items: center;
@@ -506,6 +507,147 @@ a.btn:focus-visible { outline: 1.5px solid var(--accent); outline-offset: 3px; }
 }
 
 
+/* ---------- thoughts ----------
+   Hovering a paper (or a post) lets a thought surface in the empty rail
+   beside it: a line drawing that draws itself, in the scenery's ink, and one
+   sentence in faded italics, reached by a thin branch from the title (after
+   the writing page of nathanchen.me). The content is the item's own
+   <template class="gist">, so without JS, in print and to a screen reader
+   nothing extra is there; site.js shows it only for a mouse or a pen, and
+   only where the rail is a column of its own (wider than 860px). */
+.columns { position: relative; }
+.thought {
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+  color: var(--accent);
+  opacity: 0;
+  transform: translateX(10px);
+  filter: blur(3px);
+  transition: opacity 240ms ease, transform 460ms cubic-bezier(0.22, 1, 0.36, 1), filter 460ms ease;
+}
+.thought.on { opacity: 1; transform: none; filter: none; transition-delay: 120ms; }
+/* the faint glow it surfaces in */
+.thought::before {
+  content: '';
+  position: absolute;
+  inset: -18px -14px;
+  z-index: -1;
+  background: radial-gradient(closest-side, rgba(46, 115, 102, 0.09), rgba(46, 115, 102, 0));
+}
+.thought svg { display: block; width: 100%; height: auto; overflow: visible; margin-bottom: 10px; }
+.thought svg .d {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.15;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+.thought.on svg .d { stroke-dashoffset: 0; transition: stroke-dashoffset 900ms cubic-bezier(0.22, 1, 0.36, 1) calc(200ms + var(--i, 0) * 110ms); }
+.thought svg .ghost { fill: none; stroke: currentColor; stroke-width: 1; stroke-dasharray: 2.5 3; stroke-linecap: round; opacity: 0; }
+.thought svg .hot { fill: currentColor; fill-opacity: 0.13; stroke: none; opacity: 0; }
+.thought svg text {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 7.5px;
+  letter-spacing: 0.06em;
+  fill: var(--mist);
+}
+.thought svg text:not(.st):not(.sv) { opacity: 0; }
+/* what moves: a drawing loops like a short gif (SMIL, in the template;
+   site.js stills it where motion is reduced or paused). Their opacity is
+   the animation's own, so these take none from here. */
+.thought svg .bar { fill: currentColor; fill-opacity: 0.3; stroke: none; }
+.thought svg .dot { fill: currentColor; stroke: none; }
+.thought svg text.st { fill: var(--accent); }
+.thought svg text.sv--ink { fill: var(--ink); }
+.thought svg .cut { fill: none; stroke: var(--ink); stroke-width: 0.9; stroke-linecap: round; }
+/* TempQuant's quantization damage, in red as in the paper's figure: the
+   mass a bar lost below its full-precision cap hatched, what it gained
+   above it solid */
+.thought svg .over { fill: #B4553F; fill-opacity: 0.6; stroke: none; }
+.thought svg .miss { fill: url(#tq-hatch); stroke: none; }
+/* The Price of Precision's model: a layer's blocks coloured by their
+   precision (the colour is the animation's own fill), fading in as the lines
+   draw; the frontier (its brightness the animation's), the configs tried,
+   and the ring the last one rings with */
+.thought svg .cell { stroke: none; opacity: 0; }
+.thought svg .front { fill: none; stroke: currentColor; stroke-width: 1.2; stroke-linecap: round; opacity: 0; }
+.thought.on svg .cell, .thought.on svg .front { opacity: 1; transition: opacity 520ms ease calc(200ms + var(--i, 0) * 110ms); }
+.thought svg .tried, .thought svg .ring { fill: none; stroke: currentColor; stroke-width: 0.8; }
+/* MoE's route through the experts and the experts it takes (each in its
+   theme's colour, the animation's own), and the token that runs it; the
+   context schedule's bar, its KV cache and weights lines, and the edge of
+   the run */
+.thought svg .route { fill: none; stroke-width: 1.5; stroke-linejoin: round; stroke-linecap: round; opacity: 0; }
+.thought.on svg .route { opacity: 1; transition: opacity 520ms ease 420ms; }
+.thought svg .hit { stroke: none; }
+.thought svg .tok { fill: var(--ink); stroke: none; }
+.thought svg .ctx { fill: currentColor; fill-opacity: 0.35; stroke: none; }
+.thought svg .kvline { fill: none; stroke: var(--mist); stroke-width: 1.4; stroke-linecap: round; }
+.thought svg .wline { fill: none; stroke: var(--accent-deep); stroke-width: 1.4; stroke-linejoin: round; stroke-linecap: round; }
+.thought svg .cursor { fill: none; stroke: var(--ink); stroke-width: 0.8; stroke-dasharray: 1.5 2; }
+.thought svg pattern path { stroke: #B4553F; stroke-width: 1; stroke-opacity: 0.75; }
+.thought.on svg .ghost, .thought.on svg .hot, .thought.on svg text:not(.st):not(.sv) { opacity: 1; transition: opacity 520ms ease calc(260ms + var(--i, 0) * 110ms); }
+.thought p { margin: 0; font-style: italic; font-size: 14px; line-height: 1.5; color: var(--mist); }
+.branch { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; z-index: 1; }
+.branch path {
+  fill: none;
+  stroke: var(--accent);
+  stroke-opacity: 0.45;
+  stroke-width: 1;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+.branch.on path { stroke-dashoffset: 0; opacity: 1; transition: stroke-dashoffset 520ms cubic-bezier(0.22, 1, 0.36, 1), opacity 120ms ease; }
+@media (prefers-reduced-motion: reduce) {
+  /* it fades in whole: nothing draws or slides */
+  .thought, .thought.on { transform: none; filter: none; transition: opacity 200ms ease; }
+  .thought svg .d, .thought.on svg .d, .branch path, .branch.on path { stroke-dashoffset: 0; }
+  .thought.on svg .d, .thought.on svg .ghost, .thought.on svg .hot, .thought.on svg text, .thought.on svg .cell, .thought.on svg .front, .thought.on svg .route { transition: none; }
+  .branch.on path { transition: opacity 200ms ease; }
+}
+
+/* ---------- misc ----------
+   Hobbies: a line, a collage of photos (3:4 frames like the portrait's), a line
+   about tea, and the teapot pair, one of them a short clip that loops
+   while it is on screen. */
+#panel-misc .htitle { color: var(--ink); font-weight: 600; font-size: 18px; line-height: 1.35; margin-bottom: 8px; }
+.collage + p { margin-top: 28px; }
+
+/* each set of photos reads as one piece: a hairline of card between
+   them, the corners rounded on the set as a whole */
+.shots, .collage__grid { display: grid; gap: 3px; border-radius: 4px; overflow: hidden; }
+.shots { grid-template-columns: 1fr 1fr; max-width: var(--measure); margin-top: 22px; }
+.shots img, .shots video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  background: linear-gradient(165deg, #DEDEDA, #CECECA);
+}
+/* the clip plays over its first frame, the same box */
+.clipframe { position: relative; }
+.clipframe video { position: absolute; inset: 0; height: 100%; }
+
+/* the collage: a grid of 3:4 cells, four across (two under 560px). A row
+   is as tall as a cell is: the cell's width is the collage's (100cqw,
+   the wrapper being the container) less the gaps, over the columns; 4/3
+   of that. .big takes two by two, .wide two across, each cropped to fit. */
+.collage { max-width: var(--measure); margin-top: 22px; container-type: inline-size; }
+.collage__grid { grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: 170px; grid-auto-rows: calc((100cqw - 9px) / 3); }
+.collage img { display: block; width: 100%; height: 100%; object-fit: cover; background: linear-gradient(165deg, #DEDEDA, #CECECA); }
+.collage .big { grid-column: span 2; grid-row: span 2; }
+.collage .wide { grid-column: span 2; object-position: 50% 40%; }
+@media (max-width: 560px) {
+  .collage__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: 200px; grid-auto-rows: calc((100cqw - 3px) * 2 / 3); }
+}
+
 /* ---------- writing list ---------- */
 ul.posts { list-style: none; }
 ul.posts li + li { margin-top: 22px; }
@@ -552,14 +694,14 @@ a.post:hover .post-title { text-decoration: underline; text-decoration-color: va
    dropped. The controls that do nothing on paper go too; the hide is
    !important so no inline style set at runtime can bring them back. */
 @media print {
-  #cosmos, .tabs, .dice, #motion, .btn.pending { display: none !important; }
+  #cosmos, .tabs, .dice, #motion, .btn.pending, .thought, .branch, .clipframe video { display: none !important; }
   html, body, .shell { background: #fff; }
   body { padding: 0; }
   .shell { max-width: none; padding: 0; border: 0; border-radius: 0; box-shadow: none; }
   html.js-tabs .panel { display: block; }
   .panel + .panel { margin-top: 56px; }
   html.js-tabs body:not([data-tab="about"]) .rail .portrait { display: flex; }
-  .pub, .xp { break-inside: avoid; }
+  .pub, .xp, .shots, .collage { break-inside: avoid; }
   .label { break-after: avoid; }
   /* A link prints as its label alone, and "email github linkedin" left the
      reader no way to reach the person. Each rail link prints its address
@@ -571,7 +713,7 @@ a.post:hover .post-title { text-decoration: underline; text-decoration-color: va
      broken where the column ends: an address has no break opportunity of
      its own, and without overflow-wrap the link grew to 201px, out of the
      rail. */
-  .social { display: grid; gap: 1px; margin-left: 0; }
+  .social { display: grid; gap: 1px; margin-left: 0; max-width: none; }
   .social a { width: auto; height: auto; min-height: 30px; justify-content: flex-start; gap: 9px; flex-wrap: wrap; row-gap: 0; }
   .social a::after { content: attr(href); min-width: 0; color: var(--body); text-transform: none; letter-spacing: 0; overflow-wrap: anywhere; }
   .social a[data-print]::after { content: attr(data-print); }

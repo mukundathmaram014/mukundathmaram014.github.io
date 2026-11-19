@@ -29,7 +29,7 @@
   }
 </script>
 <link rel="stylesheet" href="assets/css/fonts.css?v=bc6ac8645f">
-<link rel="stylesheet" href="assets/css/site.css?v=a49bc4e356">
+<link rel="stylesheet" href="assets/css/site.css?v=ffcab39a31">
 <style>
   #cosmos { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
   /* The still picture, where the background cannot be drawn - no WebGL, or
@@ -85,12 +85,14 @@
     <a href="https://github.com/mukundathmaram014" data-print="github.com/mukundathmaram014" title="github"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57l-.02-2.04c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.33-1.76-1.33-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .32.21.69.82.57A12 12 0 0 0 12 .3"/></svg><span class="sr-only">github</span></a>
     <a href="https://linkedin.com/in/mukund-athmaram" data-print="linkedin.com/in/mukund-athmaram" title="linkedin"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zm1.78 13.02H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg><span class="sr-only">linkedin</span></a>
     <a href="https://x.com/mathmara_146" data-print="x.com/mathmara_146" title="x"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18.9 1.15h3.68l-8.04 9.19L24 22.85h-7.41l-5.8-7.58-6.64 7.58H.47l8.6-9.83L0 1.15h7.59l5.24 6.93zm-1.29 19.5h2.04L6.49 3.24H4.3z"/></svg><span class="sr-only">x</span></a>
+    <a href="https://www.youtube.com/@mukundathmaram7022" data-print="youtube.com/@mukundathmaram7022" title="youtube"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.5A3.02 3.02 0 0 0 .5 6.19C0 8.07 0 12 0 12s0 3.93.5 5.81a3.02 3.02 0 0 0 2.12 2.14c1.88.5 9.38.5 9.38.5s7.5 0 9.38-.5a3.02 3.02 0 0 0 2.12-2.14C24 15.93 24 12 24 12s0-3.93-.5-5.81zM9.55 15.57V8.43L15.82 12l-6.27 3.57z"/></svg><span class="sr-only">youtube</span></a>
+    <a href="https://www.instagram.com/mukund.146/" data-print="instagram.com/mukund.146" title="instagram"><svg class="ico ico--line" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="0.5"/></svg><span class="sr-only">instagram</span></a>
   </nav>
 </aside>
 <main>
 <section class="panel is-active" id="panel-about">
   <p>Hi! I study electrical and computer engineering and computer science at Cornell.</p>
-  <p>I'm currently doing research at AMD, where I work on LLM inference optimization and interpretability. My research so far has mostly focused on quantization.</p>
+  <p>I'm currently doing research at AMD, where I work on LLM efficiency. My research so far has mostly focused on quantization.</p>
   <p>I'm also a member of the <a href="https://zhang.ece.cornell.edu/">Zhang Research Group</a> at Cornell, where I was part of a project that involved building a mini TPU on an FPGA. I led its system design and compiler development.</p>
   <h2 class="label mono" style="margin-top:46px;">experience</h2>
   <div class="xp">
@@ -125,11 +127,179 @@
          <div class="links"><a class="btn" href="...">pdf</a></div> -->
   <div class="pub">
     <h3 class="ptitle">TempQuant: Learning Adaptive Temperatures for Quantized Language Models</h3>
+    <template class="gist">
+      <svg viewBox="0 0 150 152" data-still="5.7" aria-hidden="true" focusable="false">
+        <defs><pattern id="tq-hatch" width="3" height="3" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0 0V3"/></pattern></defs>
+        <text class="st" x="0" y="7" opacity="1">full precision<animate attributeName="opacity" values="1;1;0;0;1" keyTimes="0;.083;.11;.975;1" dur="6s" begin="0.5s" repeatCount="indefinite"/></text>
+        <text class="st" x="0" y="7" opacity="0">quantized<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.083;.11;.375;.4;1" dur="6s" begin="0.5s" repeatCount="indefinite"/></text>
+        <text class="st" x="0" y="7" opacity="0">set temperature<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.375;.4;.667;.692;1" dur="6s" begin="0.5s" repeatCount="indefinite"/></text>
+        <text class="st" x="0" y="7" opacity="0">set top-p<animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.667;.692;.975;1" dur="6s" begin="0.5s" repeatCount="indefinite"/></text>
+        <text style="--i:1" x="0" y="22">ranking kept</text>
+        <path class="ghost" style="--i:1" d="M5 35H23M33 59H51"/>
+        <rect class="miss" x="6" y="35" width="16" height="0">
+          <animate attributeName="height" values="0;0;8;8;0.68;0.68;0;0" keyTimes="0;.083;.158;.375;.45;.667;.742;1" dur="6s" begin="0.5s" repeatCount="indefinite"/>
+        </rect>
+        <rect class="bar" x="6" y="35" width="16" height="32">
+          <animate attributeName="height" values="32;32;24;24;31.32;31.32;32;32" keyTimes="0;.083;.158;.375;.45;.667;.742;1" dur="6s" begin="0.5s" repeatCount="indefinite"/>
+          <animate attributeName="y" values="35;35;43;43;35.68;35.68;35;35" keyTimes="0;.083;.158;.375;.45;.667;.742;1" dur="6s" begin="0.5s" repeatCount="indefinite"/>
+        </rect>
+        <rect class="over" x="6" y="35" width="16" height="0">
+          <animate attributeName="height" values="0;0;0;0;0;0;0;0" keyTimes="0;.083;.158;.375;.45;.667;.742;1" dur="6s" begin="0.5s" repeatCount="indefinite"/>
+          <animate attributeName="y" values="35;35;43;43;35.68;35.68;35;35" keyTimes="0;.083;.158;.375;.45;.667;.742;1" dur="6s" begin="0.5s" repeatCount="indefinite"/>
+        </rect>
+        <text class="sv" x="14" y="32.5" text-anchor="middle" opacity="1">80%<animate attributeName="opacity" values="1;1;0;0;1" keyTimes="0;.083;.11;.975;1" dur="6s" begin="0.5s" repeatCount="indefinite"/></text>
+        <text class="sv" x="14" y="32.5" text-anchor="middle" opacity="0">60%<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.083;.11;.375;.4;1" dur="6s" begin="0.5s" repeatCount="indefinite"/></text>
+        <text class="sv" x="14" y="32.5" text-anchor="middle" opacity="0">78%<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.375;.4;.667;.692;1" dur="6s" begin="0.5s" repeatCount="indefinite"/></text>
+        <text class="sv" x="14" y="32.5" text-anchor="middle" opacity="0">80%<animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.667;.692;.975;1" dur="6s" begin="0.5s" repeatCount="indefinite"/></text>
+        <rect class="miss" x="34" y="59" width="16" height="0">
+          <animate attributeName="height" values="0;0;0;0;0.16;0.16;0;0" keyTimes="0;.083;.158;.375;.45;.667;.742;1" dur="6s" begin="0.5s" repeatCount="indefinite"/>
+        </rect>
+        <rect class="bar" x="34" y="59" width="16" height="8">
+          <animate attributeName="height" values="8;8;12;12;7.84;7.84;8;8" keyTimes="0;.083;.158;.375;.45;.667;.742;1" dur="6s" begin="0.5s" repeatCount="indefinite"/>
+          <animate attributeName="y" values="59;59;55;55;59.16;59.16;59;59" keyTimes="0;.083;.158;.375;.45;.667;.742;1" dur="6s" begin="0.5s" repeatCount="indefinite"/>
+        </rect>
+        <rect class="over" x="34" y="59" width="16" height="0">
+          <animate attributeName="height" values="0;0;4;4;0;0;0;0" keyTimes="0;.083;.158;.375;.45;.667;.742;1" dur="6s" begin="0.5s" repeatCount="indefinite"/>
+          <animate attributeName="y" values="59;59;55;55;59.16;59.16;59;59" keyTimes="0;.083;.158;.375;.45;.667;.742;1" dur="6s" begin="0.5s" repeatCount="indefinite"/>
+        </rect>
+        <text class="sv" x="42" y="56.5" text-anchor="middle" opacity="1">20%<animate attributeName="opacity" values="1;1;0;0;1" keyTimes="0;.083;.11;.975;1" dur="6s" begin="0.5s" repeatCount="indefinite"/></text>
+        <text class="sv" x="42" y="52.5" text-anchor="middle" opacity="0">30%<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.083;.11;.375;.4;1" dur="6s" begin="0.5s" repeatCount="indefinite"/></text>
+        <text class="sv" x="42" y="56.5" text-anchor="middle" opacity="0">20%<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.375;.4;.667;.692;1" dur="6s" begin="0.5s" repeatCount="indefinite"/></text>
+        <text class="sv" x="42" y="56.5" text-anchor="middle" opacity="0">20%<animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.667;.692;.975;1" dur="6s" begin="0.5s" repeatCount="indefinite"/></text>
+        <rect class="miss" x="62" y="67" width="16" height="0">
+          <animate attributeName="height" values="0;0;0;0;0;0;0;0" keyTimes="0;.083;.158;.375;.45;.667;.742;1" dur="6s" begin="0.5s" repeatCount="indefinite"/>
+        </rect>
+        <rect class="bar" x="62" y="67" width="16" height="0">
+          <animate attributeName="height" values="0;0;4;4;0.88;0.88;0;0" keyTimes="0;.083;.158;.375;.45;.667;.742;1" dur="6s" begin="0.5s" repeatCount="indefinite"/>
+          <animate attributeName="y" values="67;67;63;63;66.12;66.12;67;67" keyTimes="0;.083;.158;.375;.45;.667;.742;1" dur="6s" begin="0.5s" repeatCount="indefinite"/>
+        </rect>
+        <rect class="over" x="62" y="67" width="16" height="0">
+          <animate attributeName="height" values="0;0;4;4;0.88;0.88;0;0" keyTimes="0;.083;.158;.375;.45;.667;.742;1" dur="6s" begin="0.5s" repeatCount="indefinite"/>
+          <animate attributeName="y" values="67;67;63;63;66.12;66.12;67;67" keyTimes="0;.083;.158;.375;.45;.667;.742;1" dur="6s" begin="0.5s" repeatCount="indefinite"/>
+        </rect>
+        <text class="sv" x="70" y="64.5" text-anchor="middle" opacity="1">0%<animate attributeName="opacity" values="1;1;0;0;1" keyTimes="0;.083;.11;.975;1" dur="6s" begin="0.5s" repeatCount="indefinite"/></text>
+        <text class="sv" x="70" y="60.5" text-anchor="middle" opacity="0">10%<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.083;.11;.375;.4;1" dur="6s" begin="0.5s" repeatCount="indefinite"/></text>
+        <text class="sv" x="70" y="63.62" text-anchor="middle" opacity="0">2%<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.375;.4;.667;.692;1" dur="6s" begin="0.5s" repeatCount="indefinite"/></text>
+        <text class="sv" x="70" y="64.5" text-anchor="middle" opacity="0">0%<animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.667;.692;.975;1" dur="6s" begin="0.5s" repeatCount="indefinite"/></text>
+        <path class="d" pathLength="1" style="--i:0" d="M0 67H84"/>
+        <text style="--i:1" x="14" y="76" text-anchor="middle">paris</text>
+        <text style="--i:2" x="42" y="76" text-anchor="middle">rome</text>
+        <text style="--i:3" x="70" y="76" text-anchor="middle">oslo</text>
+        <path class="cut" d="M58 73.5H82" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.667;.692;.975;1" dur="6s" begin="0.5s" repeatCount="indefinite"/></path>
+        <text class="st" x="96" y="39" opacity="0">T = 0.5<animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.375;.4;.975;1" dur="6s" begin="0.5s" repeatCount="indefinite"/></text>
+        <text class="st" x="96" y="49" opacity="0">p = 0.95<animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.667;.692;.975;1" dur="6s" begin="0.5s" repeatCount="indefinite"/></text>
+        <text style="--i:2" x="96" y="61">KL</text>
+        <text class="sv sv--ink" x="109" y="61" opacity="1">0<animate attributeName="opacity" values="1;1;0;0;1" keyTimes="0;.083;.11;.975;1" dur="6s" begin="0.5s" repeatCount="indefinite"/></text>
+        <text class="sv sv--ink" x="109" y="61" opacity="0">0.149<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.083;.11;.375;.4;1" dur="6s" begin="0.5s" repeatCount="indefinite"/></text>
+        <text class="sv sv--ink" x="109" y="61" opacity="0">0.022<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.375;.4;.667;.692;1" dur="6s" begin="0.5s" repeatCount="indefinite"/></text>
+        <text class="sv sv--ink" x="109" y="61" opacity="0">0.000<animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.667;.692;.975;1" dur="6s" begin="0.5s" repeatCount="indefinite"/></text>
+        <text style="--i:1" x="0" y="97">ranking flipped</text>
+        <path class="ghost" style="--i:1" d="M5 110H23M33 134H51"/>
+        <rect class="miss" x="6" y="110" width="16" height="0">
+          <animate attributeName="height" values="0;0;20;20;18.6;18.6;15.28;15.28" keyTimes="0;.083;.158;.375;.45;.667;.742;1" dur="6s" begin="0.5s" repeatCount="indefinite"/>
+        </rect>
+        <rect class="bar" x="6" y="110" width="16" height="32">
+          <animate attributeName="height" values="32;32;12;12;13.4;13.4;16.72;16.72" keyTimes="0;.083;.158;.375;.45;.667;.742;1" dur="6s" begin="0.5s" repeatCount="indefinite"/>
+          <animate attributeName="y" values="110;110;130;130;128.6;128.6;125.28;125.28" keyTimes="0;.083;.158;.375;.45;.667;.742;1" dur="6s" begin="0.5s" repeatCount="indefinite"/>
+        </rect>
+        <rect class="over" x="6" y="110" width="16" height="0">
+          <animate attributeName="height" values="0;0;0;0;0;0;0;0" keyTimes="0;.083;.158;.375;.45;.667;.742;1" dur="6s" begin="0.5s" repeatCount="indefinite"/>
+          <animate attributeName="y" values="110;110;130;130;128.6;128.6;125.28;125.28" keyTimes="0;.083;.158;.375;.45;.667;.742;1" dur="6s" begin="0.5s" repeatCount="indefinite"/>
+        </rect>
+        <text class="sv" x="14" y="107.5" text-anchor="middle" opacity="1">80%<animate attributeName="opacity" values="1;1;0;0;1" keyTimes="0;.083;.11;.975;1" dur="6s" begin="0.5s" repeatCount="indefinite"/></text>
+        <text class="sv" x="14" y="107.5" text-anchor="middle" opacity="0">30%<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.083;.11;.375;.4;1" dur="6s" begin="0.5s" repeatCount="indefinite"/></text>
+        <text class="sv" x="14" y="107.5" text-anchor="middle" opacity="0">34%<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.375;.4;.667;.692;1" dur="6s" begin="0.5s" repeatCount="indefinite"/></text>
+        <text class="sv" x="14" y="107.5" text-anchor="middle" opacity="0">42%<animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.667;.692;.975;1" dur="6s" begin="0.5s" repeatCount="indefinite"/></text>
+        <rect class="miss" x="34" y="134" width="16" height="0">
+          <animate attributeName="height" values="0;0;0;0;0;0;0;0" keyTimes="0;.083;.158;.375;.45;.667;.742;1" dur="6s" begin="0.5s" repeatCount="indefinite"/>
+        </rect>
+        <rect class="bar" x="34" y="134" width="16" height="8">
+          <animate attributeName="height" values="8;8;24;24;18.64;18.64;23.28;23.28" keyTimes="0;.083;.158;.375;.45;.667;.742;1" dur="6s" begin="0.5s" repeatCount="indefinite"/>
+          <animate attributeName="y" values="134;134;118;118;123.36;123.36;118.72;118.72" keyTimes="0;.083;.158;.375;.45;.667;.742;1" dur="6s" begin="0.5s" repeatCount="indefinite"/>
+        </rect>
+        <rect class="over" x="34" y="134" width="16" height="0">
+          <animate attributeName="height" values="0;0;16;16;10.64;10.64;15.28;15.28" keyTimes="0;.083;.158;.375;.45;.667;.742;1" dur="6s" begin="0.5s" repeatCount="indefinite"/>
+          <animate attributeName="y" values="134;134;118;118;123.36;123.36;118.72;118.72" keyTimes="0;.083;.158;.375;.45;.667;.742;1" dur="6s" begin="0.5s" repeatCount="indefinite"/>
+        </rect>
+        <text class="sv" x="42" y="131.5" text-anchor="middle" opacity="1">20%<animate attributeName="opacity" values="1;1;0;0;1" keyTimes="0;.083;.11;.975;1" dur="6s" begin="0.5s" repeatCount="indefinite"/></text>
+        <text class="sv" x="42" y="115.5" text-anchor="middle" opacity="0">60%<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.083;.11;.375;.4;1" dur="6s" begin="0.5s" repeatCount="indefinite"/></text>
+        <text class="sv" x="42" y="120.86" text-anchor="middle" opacity="0">47%<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.375;.4;.667;.692;1" dur="6s" begin="0.5s" repeatCount="indefinite"/></text>
+        <text class="sv" x="42" y="116.22" text-anchor="middle" opacity="0">58%<animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.667;.692;.975;1" dur="6s" begin="0.5s" repeatCount="indefinite"/></text>
+        <rect class="miss" x="62" y="142" width="16" height="0">
+          <animate attributeName="height" values="0;0;0;0;0;0;0;0" keyTimes="0;.083;.158;.375;.45;.667;.742;1" dur="6s" begin="0.5s" repeatCount="indefinite"/>
+        </rect>
+        <rect class="bar" x="62" y="142" width="16" height="0">
+          <animate attributeName="height" values="0;0;4;4;7.96;7.96;0;0" keyTimes="0;.083;.158;.375;.45;.667;.742;1" dur="6s" begin="0.5s" repeatCount="indefinite"/>
+          <animate attributeName="y" values="142;142;138;138;134.04;134.04;142;142" keyTimes="0;.083;.158;.375;.45;.667;.742;1" dur="6s" begin="0.5s" repeatCount="indefinite"/>
+        </rect>
+        <rect class="over" x="62" y="142" width="16" height="0">
+          <animate attributeName="height" values="0;0;4;4;7.96;7.96;0;0" keyTimes="0;.083;.158;.375;.45;.667;.742;1" dur="6s" begin="0.5s" repeatCount="indefinite"/>
+          <animate attributeName="y" values="142;142;138;138;134.04;134.04;142;142" keyTimes="0;.083;.158;.375;.45;.667;.742;1" dur="6s" begin="0.5s" repeatCount="indefinite"/>
+        </rect>
+        <text class="sv" x="70" y="139.5" text-anchor="middle" opacity="1">0%<animate attributeName="opacity" values="1;1;0;0;1" keyTimes="0;.083;.11;.975;1" dur="6s" begin="0.5s" repeatCount="indefinite"/></text>
+        <text class="sv" x="70" y="135.5" text-anchor="middle" opacity="0">10%<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.083;.11;.375;.4;1" dur="6s" begin="0.5s" repeatCount="indefinite"/></text>
+        <text class="sv" x="70" y="131.54" text-anchor="middle" opacity="0">20%<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.375;.4;.667;.692;1" dur="6s" begin="0.5s" repeatCount="indefinite"/></text>
+        <text class="sv" x="70" y="139.5" text-anchor="middle" opacity="0">0%<animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.667;.692;.975;1" dur="6s" begin="0.5s" repeatCount="indefinite"/></text>
+        <path class="d" pathLength="1" style="--i:0" d="M0 142H84"/>
+        <text style="--i:1" x="14" y="151" text-anchor="middle">42</text>
+        <text style="--i:2" x="42" y="151" text-anchor="middle">40</text>
+        <text style="--i:3" x="70" y="151" text-anchor="middle">48</text>
+        <path class="cut" d="M63 148.5H77" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.667;.692;.975;1" dur="6s" begin="0.5s" repeatCount="indefinite"/></path>
+        <text class="st" x="96" y="114" opacity="0">T = 2.1<animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.375;.4;.975;1" dur="6s" begin="0.5s" repeatCount="indefinite"/></text>
+        <text class="st" x="96" y="124" opacity="0">p = 0.8<animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.667;.692;.975;1" dur="6s" begin="0.5s" repeatCount="indefinite"/></text>
+        <text style="--i:2" x="96" y="136">KL</text>
+        <text class="sv sv--ink" x="109" y="136" opacity="1">0<animate attributeName="opacity" values="1;1;0;0;1" keyTimes="0;.083;.11;.975;1" dur="6s" begin="0.5s" repeatCount="indefinite"/></text>
+        <text class="sv sv--ink" x="109" y="136" opacity="0">0.565<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.083;.11;.375;.4;1" dur="6s" begin="0.5s" repeatCount="indefinite"/></text>
+        <text class="sv sv--ink" x="109" y="136" opacity="0">0.527<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;.375;.4;.667;.692;1" dur="6s" begin="0.5s" repeatCount="indefinite"/></text>
+        <text class="sv sv--ink" x="109" y="136" opacity="0">0.305<animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.667;.692;.975;1" dur="6s" begin="0.5s" repeatCount="indefinite"/></text>
+      </svg>
+      <p>Learning temperature and top-p per token to recover quantization damage.</p>
+    </template>
     <div class="pub__meta"><span class="authors"><strong>Mukund Athmaram</strong>, Liang Ma, Manoj Rao</span><span class="venue">Under review, 2026</span></div>
     <div class="links"><a class="btn" href="https://arxiv.org/abs/2611.22128">arxiv</a></div>
   </div>
   <div class="pub">
     <h3 class="ptitle">The Price of Precision: A Calibrated Cost Model for Mixed-Precision LLM Serving</h3>
+    <template class="gist">
+      <svg viewBox="0 0 150 118" data-still="7.8" aria-hidden="true" focusable="false">
+        <text class="st" x="0" y="6" opacity="1">searching<animate attributeName="opacity" values="1;1;0;0;1" keyTimes="0;0.68;0.705;0.965;1" dur="10s" begin="0.2s" repeatCount="indefinite"/></text>
+        <text class="st" x="0" y="6" opacity="0">settled<animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.69;0.715;0.965;1" dur="10s" begin="0.2s" repeatCount="indefinite"/></text>
+        <rect class="cell" x="90" y="1" width="5" height="5" rx="1" fill="#22564C"/>
+        <text style="--i:3" x="96.5" y="6">16</text>
+        <rect class="cell" x="110" y="1" width="5" height="5" rx="1" fill="#4E8F82"/>
+        <text style="--i:3" x="116.5" y="6">8</text>
+        <rect class="cell" x="126" y="1" width="5" height="5" rx="1" fill="#A3CBC1"/>
+        <text style="--i:3" x="132.5" y="6">4</text>
+        <text style="--i:0" x="0" y="17.5">attn</text>
+        <text style="--i:0" x="0" y="30">mlp</text>
+        <rect class="cell" style="--i:0" x="24" y="11" width="18" height="9" rx="1.5" fill="#22564C"><animate attributeName="fill" values="#22564C;#22564C;#A3CBC1;#A3CBC1;#4E8F82;#4E8F82;#A3CBC1;#A3CBC1;#22564C;#22564C;#22564C;#22564C;#22564C" keyTimes="0;0.13;0.155;0.26;0.285;0.39;0.415;0.52;0.545;0.65;0.675;0.965;1" dur="10s" begin="0.2s" repeatCount="indefinite"/></rect>
+        <rect class="cell" style="--i:0" x="24" y="22.5" width="18" height="11" rx="1.5" fill="#22564C"><animate attributeName="fill" values="#22564C;#22564C;#A3CBC1;#A3CBC1;#22564C;#22564C;#4E8F82;#4E8F82;#4E8F82;#4E8F82;#4E8F82;#4E8F82;#22564C" keyTimes="0;0.13;0.155;0.26;0.285;0.39;0.415;0.52;0.545;0.65;0.675;0.965;1" dur="10s" begin="0.2s" repeatCount="indefinite"/></rect>
+        <rect class="cell" style="--i:1" x="45.2" y="11" width="18" height="9" rx="1.5" fill="#22564C"><animate attributeName="fill" values="#22564C;#22564C;#A3CBC1;#A3CBC1;#22564C;#22564C;#22564C;#22564C;#4E8F82;#4E8F82;#4E8F82;#4E8F82;#22564C" keyTimes="0;0.13;0.155;0.26;0.285;0.39;0.415;0.52;0.545;0.65;0.675;0.965;1" dur="10s" begin="0.2s" repeatCount="indefinite"/></rect>
+        <rect class="cell" style="--i:1" x="45.2" y="22.5" width="18" height="11" rx="1.5" fill="#4E8F82"><animate attributeName="fill" values="#4E8F82;#4E8F82;#A3CBC1;#A3CBC1;#4E8F82;#4E8F82;#A3CBC1;#A3CBC1;#22564C;#22564C;#A3CBC1;#A3CBC1;#4E8F82" keyTimes="0;0.13;0.155;0.26;0.285;0.39;0.415;0.52;0.545;0.65;0.675;0.965;1" dur="10s" begin="0.2s" repeatCount="indefinite"/></rect>
+        <rect class="cell" style="--i:2" x="66.4" y="11" width="18" height="9" rx="1.5" fill="#4E8F82"><animate attributeName="fill" values="#4E8F82;#4E8F82;#4E8F82;#4E8F82;#A3CBC1;#A3CBC1;#4E8F82;#4E8F82;#22564C;#22564C;#4E8F82;#4E8F82;#4E8F82" keyTimes="0;0.13;0.155;0.26;0.285;0.39;0.415;0.52;0.545;0.65;0.675;0.965;1" dur="10s" begin="0.2s" repeatCount="indefinite"/></rect>
+        <rect class="cell" style="--i:2" x="66.4" y="22.5" width="18" height="11" rx="1.5" fill="#22564C"><animate attributeName="fill" values="#22564C;#22564C;#A3CBC1;#A3CBC1;#4E8F82;#4E8F82;#22564C;#22564C;#4E8F82;#4E8F82;#A3CBC1;#A3CBC1;#22564C" keyTimes="0;0.13;0.155;0.26;0.285;0.39;0.415;0.52;0.545;0.65;0.675;0.965;1" dur="10s" begin="0.2s" repeatCount="indefinite"/></rect>
+        <rect class="cell" style="--i:3" x="87.6" y="11" width="18" height="9" rx="1.5" fill="#22564C"><animate attributeName="fill" values="#22564C;#22564C;#A3CBC1;#A3CBC1;#4E8F82;#4E8F82;#A3CBC1;#A3CBC1;#4E8F82;#4E8F82;#4E8F82;#4E8F82;#22564C" keyTimes="0;0.13;0.155;0.26;0.285;0.39;0.415;0.52;0.545;0.65;0.675;0.965;1" dur="10s" begin="0.2s" repeatCount="indefinite"/></rect>
+        <rect class="cell" style="--i:3" x="87.6" y="22.5" width="18" height="11" rx="1.5" fill="#22564C"><animate attributeName="fill" values="#22564C;#22564C;#4E8F82;#4E8F82;#A3CBC1;#A3CBC1;#A3CBC1;#A3CBC1;#22564C;#22564C;#A3CBC1;#A3CBC1;#22564C" keyTimes="0;0.13;0.155;0.26;0.285;0.39;0.415;0.52;0.545;0.65;0.675;0.965;1" dur="10s" begin="0.2s" repeatCount="indefinite"/></rect>
+        <rect class="cell" style="--i:0" x="108.8" y="11" width="18" height="9" rx="1.5" fill="#22564C"><animate attributeName="fill" values="#22564C;#22564C;#A3CBC1;#A3CBC1;#22564C;#22564C;#4E8F82;#4E8F82;#22564C;#22564C;#4E8F82;#4E8F82;#22564C" keyTimes="0;0.13;0.155;0.26;0.285;0.39;0.415;0.52;0.545;0.65;0.675;0.965;1" dur="10s" begin="0.2s" repeatCount="indefinite"/></rect>
+        <rect class="cell" style="--i:0" x="108.8" y="22.5" width="18" height="11" rx="1.5" fill="#4E8F82"><animate attributeName="fill" values="#4E8F82;#4E8F82;#A3CBC1;#A3CBC1;#4E8F82;#4E8F82;#A3CBC1;#A3CBC1;#4E8F82;#4E8F82;#A3CBC1;#A3CBC1;#4E8F82" keyTimes="0;0.13;0.155;0.26;0.285;0.39;0.415;0.52;0.545;0.65;0.675;0.965;1" dur="10s" begin="0.2s" repeatCount="indefinite"/></rect>
+        <rect class="cell" style="--i:1" x="130" y="11" width="18" height="9" rx="1.5" fill="#22564C"><animate attributeName="fill" values="#22564C;#22564C;#A3CBC1;#A3CBC1;#4E8F82;#4E8F82;#22564C;#22564C;#4E8F82;#4E8F82;#22564C;#22564C;#22564C" keyTimes="0;0.13;0.155;0.26;0.285;0.39;0.415;0.52;0.545;0.65;0.675;0.965;1" dur="10s" begin="0.2s" repeatCount="indefinite"/></rect>
+        <rect class="cell" style="--i:1" x="130" y="22.5" width="18" height="11" rx="1.5" fill="#22564C"><animate attributeName="fill" values="#22564C;#22564C;#A3CBC1;#A3CBC1;#22564C;#22564C;#4E8F82;#4E8F82;#4E8F82;#4E8F82;#4E8F82;#4E8F82;#22564C" keyTimes="0;0.13;0.155;0.26;0.285;0.39;0.415;0.52;0.545;0.65;0.675;0.965;1" dur="10s" begin="0.2s" repeatCount="indefinite"/></rect>
+        <path class="d" pathLength="1" style="--i:0" d="M24 44V108H148"/>
+        <text style="--i:1" x="27" y="47">accuracy loss</text>
+        <text style="--i:2" x="148" y="116.5" text-anchor="end">predicted latency</text>
+        <path class="front" d="M28 50L31 59.529L34 66.2L37 71.13L40 74.923L43 77.931L46 80.375L49 82.4L52 84.105L55 85.561L58 86.818L61 87.915L64 88.88L67 89.736L70 90.5L73 91.186L76 91.806L79 92.369L82 92.882L85 93.352L88 93.784L91 94.182L94 94.55L97 94.892L100 95.209L103 95.506L106 95.783L109 96.042L112 96.286L115 96.515L118 96.731L121 96.935L124 97.127L127 97.31L130 97.483L133 97.647L136 97.803L139 97.952L142 98.094L145 98.229" stroke-opacity="0.45"><animate attributeName="stroke-opacity" values="0.45;0.45;1;1;0.45" keyTimes="0;0.69;0.72;0.965;1" dur="10s" begin="0.2s" repeatCount="indefinite"/></path>
+        <circle class="tried" cx="128" cy="87.368" r="2.2" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.035;0.045;0.965;1" dur="10s" begin="0.2s" repeatCount="indefinite"/></circle>
+        <circle class="tried" cx="36" cy="57.636" r="2.2" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.165;0.175;0.965;1" dur="10s" begin="0.2s" repeatCount="indefinite"/></circle>
+        <circle class="tried" cx="92" cy="80.308" r="2.2" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.295;0.305;0.965;1" dur="10s" begin="0.2s" repeatCount="indefinite"/></circle>
+        <circle class="tried" cx="72" cy="72.966" r="2.2" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.425;0.435;0.965;1" dur="10s" begin="0.2s" repeatCount="indefinite"/></circle>
+        <circle class="tried" cx="110" cy="88.125" r="2.2" opacity="0"><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.555;0.565;0.965;1" dur="10s" begin="0.2s" repeatCount="indefinite"/></circle>
+        <g opacity="0"><animateTransform attributeName="transform" type="translate" values="128 87.368;128 87.368;36 57.636;36 57.636;92 80.308;92 80.308;72 72.966;72 72.966;110 88.125;110 88.125;58 86.818;58 86.818;128 87.368" keyTimes="0;0.132;0.168;0.262;0.298;0.392;0.428;0.522;0.558;0.652;0.688;0.965;1" dur="10s" begin="0.2s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.02;0.965;0.995;1" dur="10s" begin="0.2s" repeatCount="indefinite"/>
+          <circle class="ring" r="3" opacity="0"><animate attributeName="r" values="3;3;11;3;3;11;11" keyTimes="0;0.69;0.78;0.781;0.8;0.89;1" dur="10s" begin="0.2s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;0;0.9;0;0;0.7;0;0" keyTimes="0;0.69;0.692;0.78;0.8;0.802;0.89;1" dur="10s" begin="0.2s" repeatCount="indefinite"/></circle>
+          <circle class="dot" r="2.4"><animate attributeName="r" values="2.4;2.4;3.6;3.6;2.4" keyTimes="0;0.69;0.715;0.965;1" dur="10s" begin="0.2s" repeatCount="indefinite"/></circle>
+        </g>
+      </svg>
+      <p>Predicting latency for mixed-precision configurations to allocate precision for the best accuracy and speed.</p>
+    </template>
     <div class="pub__meta"><span class="authors"><strong>Mukund Athmaram</strong>, Manoj Rao, Liang Ma</span><span class="venue">NeurIPS ODI &amp; AXIOM workshops, 2026</span></div>
     <div class="links"><!-- its AXIOM page: https://openreview.net/forum?id=xNU0sGOVhA -->
       <a class="btn" href="https://arxiv.org/abs/2610.15629">arxiv</a>
@@ -138,12 +308,82 @@
   </div>
   <div class="pub">
     <h3 class="ptitle">What MoE Routing Controls: Causal Interventions on Expert Trajectories</h3>
+    <template class="gist">
+      <svg viewBox="0 0 150 88" data-still="1.9" aria-hidden="true" focusable="false">
+        <text style="--i:0" x="0" y="7">experts</text>
+        <circle class="d" pathLength="1" style="--i:0" cx="18" cy="24" r="5"/>
+        <circle class="d" pathLength="1" style="--i:0" cx="18" cy="44" r="5"/>
+        <circle class="d" pathLength="1" style="--i:0" cx="18" cy="64" r="5"/>
+        <circle class="d" pathLength="1" style="--i:1" cx="56" cy="24" r="5"/>
+        <circle class="d" pathLength="1" style="--i:1" cx="56" cy="44" r="5"/>
+        <circle class="d" pathLength="1" style="--i:1" cx="56" cy="64" r="5"/>
+        <circle class="d" pathLength="1" style="--i:2" cx="94" cy="24" r="5"/>
+        <circle class="d" pathLength="1" style="--i:2" cx="94" cy="44" r="5"/>
+        <circle class="d" pathLength="1" style="--i:2" cx="94" cy="64" r="5"/>
+        <circle class="d" pathLength="1" style="--i:3" cx="132" cy="24" r="5"/>
+        <circle class="d" pathLength="1" style="--i:3" cx="132" cy="44" r="5"/>
+        <circle class="d" pathLength="1" style="--i:3" cx="132" cy="64" r="5"/>
+        <path class="route" d="M18 44L56 24L94 24L132 44" stroke="#7A5E96"><animate attributeName="d" values="M18 44L56 24L94 24L132 44;M18 44L56 24L94 24L132 44;M18 44L56 64L94 64L132 24;M18 44L56 64L94 64L132 24;M18 44L56 24L94 64L132 64;M18 44L56 24L94 64L132 64;M18 44L56 24L94 24L132 44" keyTimes="0;0.282;0.333;0.615;0.667;0.949;1" dur="7.800000000000001s" begin="0.8s" repeatCount="indefinite"/><animate attributeName="stroke" values="#7A5E96;#7A5E96;#A97C2E;#A97C2E;#B4553F;#B4553F;#7A5E96" keyTimes="0;0.282;0.333;0.615;0.667;0.949;1" dur="7.800000000000001s" begin="0.8s" repeatCount="indefinite"/></path>
+        <circle class="hit" cx="18" cy="44" r="3" fill="#7A5E96"><animate attributeName="cy" values="44;44;44;44;44;44;44" keyTimes="0;0.282;0.333;0.615;0.667;0.949;1" dur="7.800000000000001s" begin="0.8s" repeatCount="indefinite"/><animate attributeName="fill" values="#7A5E96;#7A5E96;#A97C2E;#A97C2E;#B4553F;#B4553F;#7A5E96" keyTimes="0;0.282;0.333;0.615;0.667;0.949;1" dur="7.800000000000001s" begin="0.8s" repeatCount="indefinite"/></circle>
+        <circle class="hit" cx="56" cy="24" r="3" fill="#7A5E96"><animate attributeName="cy" values="24;24;64;64;24;24;24" keyTimes="0;0.282;0.333;0.615;0.667;0.949;1" dur="7.800000000000001s" begin="0.8s" repeatCount="indefinite"/><animate attributeName="fill" values="#7A5E96;#7A5E96;#A97C2E;#A97C2E;#B4553F;#B4553F;#7A5E96" keyTimes="0;0.282;0.333;0.615;0.667;0.949;1" dur="7.800000000000001s" begin="0.8s" repeatCount="indefinite"/></circle>
+        <circle class="hit" cx="94" cy="24" r="3" fill="#7A5E96"><animate attributeName="cy" values="24;24;64;64;64;64;24" keyTimes="0;0.282;0.333;0.615;0.667;0.949;1" dur="7.800000000000001s" begin="0.8s" repeatCount="indefinite"/><animate attributeName="fill" values="#7A5E96;#7A5E96;#A97C2E;#A97C2E;#B4553F;#B4553F;#7A5E96" keyTimes="0;0.282;0.333;0.615;0.667;0.949;1" dur="7.800000000000001s" begin="0.8s" repeatCount="indefinite"/></circle>
+        <circle class="hit" cx="132" cy="44" r="3" fill="#7A5E96"><animate attributeName="cy" values="44;44;24;24;64;64;44" keyTimes="0;0.282;0.333;0.615;0.667;0.949;1" dur="7.800000000000001s" begin="0.8s" repeatCount="indefinite"/><animate attributeName="fill" values="#7A5E96;#7A5E96;#A97C2E;#A97C2E;#B4553F;#B4553F;#7A5E96" keyTimes="0;0.282;0.333;0.615;0.667;0.949;1" dur="7.800000000000001s" begin="0.8s" repeatCount="indefinite"/></circle>
+        <circle class="tok" r="1.8" opacity="0"><animateMotion path="M18 44L56 24L94 24L132 44" calcMode="linear" keyPoints="0;0;1;1" keyTimes="0;0.019;0.244;1" dur="7.800000000000001s" begin="0.8s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.013;0.026;0.244;0.269;1" dur="7.800000000000001s" begin="0.8s" repeatCount="indefinite"/></circle>
+        <circle class="tok" r="1.8" opacity="0"><animateMotion path="M18 44L56 64L94 64L132 24" calcMode="linear" keyPoints="0;0;1;1" keyTimes="0;0.353;0.577;1" dur="7.800000000000001s" begin="0.8s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.346;0.359;0.577;0.603;1" dur="7.800000000000001s" begin="0.8s" repeatCount="indefinite"/></circle>
+        <circle class="tok" r="1.8" opacity="0"><animateMotion path="M18 44L56 24L94 64L132 64" calcMode="linear" keyPoints="0;0;1;1" keyTimes="0;0.686;0.91;1" dur="7.800000000000001s" begin="0.8s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.679;0.692;0.91;0.936;1" dur="7.800000000000001s" begin="0.8s" repeatCount="indefinite"/></circle>
+        <text class="st" x="75" y="13" text-anchor="middle" opacity="0">steer<animate attributeName="opacity" values="0;0;1;1;0;0;1;1;0;0;1;1;0" keyTimes="0;0.263;0.282;0.359;0.391;0.596;0.615;0.692;0.724;0.929;0.949;1;1" dur="7.800000000000001s" begin="0.8s" repeatCount="indefinite"/></text>
+        <text class="sv" x="75" y="84" text-anchor="middle" style="fill:#7A5E96;font-size:9px" opacity="1">religion<animate attributeName="opacity" values="1;1;0;0;1" keyTimes="0;0.308;0.333;0.974;1" dur="7.800000000000001s" begin="0.8s" repeatCount="indefinite"/></text>
+        <text class="sv" x="75" y="84" text-anchor="middle" style="fill:#A97C2E;font-size:9px" opacity="0">money<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.333;0.365;0.641;0.667;1" dur="7.800000000000001s" begin="0.8s" repeatCount="indefinite"/></text>
+        <text class="sv" x="75" y="84" text-anchor="middle" style="fill:#B4553F;font-size:9px" opacity="0">sports<animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.667;0.699;0.974;1" dur="7.800000000000001s" begin="0.8s" repeatCount="indefinite"/></text>
+      </svg>
+      <p>How steering expert trajectories influence meaning.</p>
+    </template>
     <div class="pub__meta"><span class="authors"><strong>Mukund Athmaram</strong>, Manoj Rao, Liang Ma</span><span class="venue">NeurIPS InterpScience workshop, 2026</span></div>
     <!-- not public yet: https://openreview.net/forum?id=mcR9et16wu -->
     <div class="links"><a class="btn" href="https://arxiv.org/abs/2611.22120">arxiv</a></div>
   </div>
   <div class="pub">
     <h3 class="ptitle">Context-Aware Precision Scheduling for Small Language Models</h3>
+    <template class="gist">
+      <svg viewBox="0 0 150 118" data-still="5.6" aria-hidden="true" focusable="false">
+        <text style="--i:0" x="0" y="6">context</text>
+        <rect class="ctx" x="38" y="1.5" width="0" height="5" rx="1"><animate attributeName="width" values="0;110;110;0" keyTimes="0;0.776;0.953;1" dur="8.5s" begin="0.8s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;1;0;1" keyTimes="0;0.953;0.994;1" dur="8.5s" begin="0.8s" repeatCount="indefinite"/></rect>
+        <text style="--i:0" x="0" y="17.5">attn</text>
+        <text style="--i:0" x="0" y="30">mlp</text>
+        <rect class="cell" style="--i:0" x="24" y="11" width="18" height="9" rx="1.5" fill="#22564C"><animate attributeName="fill" values="#22564C;#22564C;#22564C;#22564C;#22564C;#22564C;#4E8F82;#4E8F82;#4E8F82;#4E8F82;#22564C" keyTimes="0;0.155;0.185;0.31;0.34;0.466;0.495;0.621;0.651;0.953;1" dur="8.5s" begin="0.8s" repeatCount="indefinite"/></rect>
+        <rect class="cell" style="--i:0" x="24" y="22.5" width="18" height="11" rx="1.5" fill="#22564C"><animate attributeName="fill" values="#22564C;#22564C;#22564C;#22564C;#4E8F82;#4E8F82;#4E8F82;#4E8F82;#A3CBC1;#A3CBC1;#22564C" keyTimes="0;0.155;0.185;0.31;0.34;0.466;0.495;0.621;0.651;0.953;1" dur="8.5s" begin="0.8s" repeatCount="indefinite"/></rect>
+        <rect class="cell" style="--i:1" x="45.2" y="11" width="18" height="9" rx="1.5" fill="#22564C"><animate attributeName="fill" values="#22564C;#22564C;#22564C;#22564C;#4E8F82;#4E8F82;#4E8F82;#4E8F82;#4E8F82;#4E8F82;#22564C" keyTimes="0;0.155;0.185;0.31;0.34;0.466;0.495;0.621;0.651;0.953;1" dur="8.5s" begin="0.8s" repeatCount="indefinite"/></rect>
+        <rect class="cell" style="--i:1" x="45.2" y="22.5" width="18" height="11" rx="1.5" fill="#22564C"><animate attributeName="fill" values="#22564C;#22564C;#4E8F82;#4E8F82;#4E8F82;#4E8F82;#A3CBC1;#A3CBC1;#A3CBC1;#A3CBC1;#22564C" keyTimes="0;0.155;0.185;0.31;0.34;0.466;0.495;0.621;0.651;0.953;1" dur="8.5s" begin="0.8s" repeatCount="indefinite"/></rect>
+        <rect class="cell" style="--i:2" x="66.4" y="11" width="18" height="9" rx="1.5" fill="#22564C"><animate attributeName="fill" values="#22564C;#22564C;#22564C;#22564C;#4E8F82;#4E8F82;#4E8F82;#4E8F82;#A3CBC1;#A3CBC1;#22564C" keyTimes="0;0.155;0.185;0.31;0.34;0.466;0.495;0.621;0.651;0.953;1" dur="8.5s" begin="0.8s" repeatCount="indefinite"/></rect>
+        <rect class="cell" style="--i:2" x="66.4" y="22.5" width="18" height="11" rx="1.5" fill="#22564C"><animate attributeName="fill" values="#22564C;#22564C;#4E8F82;#4E8F82;#4E8F82;#4E8F82;#A3CBC1;#A3CBC1;#A3CBC1;#A3CBC1;#22564C" keyTimes="0;0.155;0.185;0.31;0.34;0.466;0.495;0.621;0.651;0.953;1" dur="8.5s" begin="0.8s" repeatCount="indefinite"/></rect>
+        <rect class="cell" style="--i:3" x="87.6" y="11" width="18" height="9" rx="1.5" fill="#22564C"><animate attributeName="fill" values="#22564C;#22564C;#22564C;#22564C;#4E8F82;#4E8F82;#4E8F82;#4E8F82;#A3CBC1;#A3CBC1;#22564C" keyTimes="0;0.155;0.185;0.31;0.34;0.466;0.495;0.621;0.651;0.953;1" dur="8.5s" begin="0.8s" repeatCount="indefinite"/></rect>
+        <rect class="cell" style="--i:3" x="87.6" y="22.5" width="18" height="11" rx="1.5" fill="#22564C"><animate attributeName="fill" values="#22564C;#22564C;#4E8F82;#4E8F82;#4E8F82;#4E8F82;#A3CBC1;#A3CBC1;#A3CBC1;#A3CBC1;#22564C" keyTimes="0;0.155;0.185;0.31;0.34;0.466;0.495;0.621;0.651;0.953;1" dur="8.5s" begin="0.8s" repeatCount="indefinite"/></rect>
+        <rect class="cell" style="--i:0" x="108.8" y="11" width="18" height="9" rx="1.5" fill="#22564C"><animate attributeName="fill" values="#22564C;#22564C;#22564C;#22564C;#4E8F82;#4E8F82;#4E8F82;#4E8F82;#4E8F82;#4E8F82;#22564C" keyTimes="0;0.155;0.185;0.31;0.34;0.466;0.495;0.621;0.651;0.953;1" dur="8.5s" begin="0.8s" repeatCount="indefinite"/></rect>
+        <rect class="cell" style="--i:0" x="108.8" y="22.5" width="18" height="11" rx="1.5" fill="#22564C"><animate attributeName="fill" values="#22564C;#22564C;#4E8F82;#4E8F82;#4E8F82;#4E8F82;#A3CBC1;#A3CBC1;#A3CBC1;#A3CBC1;#22564C" keyTimes="0;0.155;0.185;0.31;0.34;0.466;0.495;0.621;0.651;0.953;1" dur="8.5s" begin="0.8s" repeatCount="indefinite"/></rect>
+        <rect class="cell" style="--i:1" x="130" y="11" width="18" height="9" rx="1.5" fill="#22564C"><animate attributeName="fill" values="#22564C;#22564C;#22564C;#22564C;#22564C;#22564C;#4E8F82;#4E8F82;#4E8F82;#4E8F82;#22564C" keyTimes="0;0.155;0.185;0.31;0.34;0.466;0.495;0.621;0.651;0.953;1" dur="8.5s" begin="0.8s" repeatCount="indefinite"/></rect>
+        <rect class="cell" style="--i:1" x="130" y="22.5" width="18" height="11" rx="1.5" fill="#22564C"><animate attributeName="fill" values="#22564C;#22564C;#22564C;#22564C;#4E8F82;#4E8F82;#4E8F82;#4E8F82;#A3CBC1;#A3CBC1;#22564C" keyTimes="0;0.155;0.185;0.31;0.34;0.466;0.495;0.621;0.651;0.953;1" dur="8.5s" begin="0.8s" repeatCount="indefinite"/></rect>
+        <rect class="cell" x="90" y="40" width="5" height="5" rx="1" fill="#22564C"/>
+        <text style="--i:3" x="96.5" y="45">16</text>
+        <rect class="cell" x="110" y="40" width="5" height="5" rx="1" fill="#4E8F82"/>
+        <text style="--i:3" x="116.5" y="45">8</text>
+        <rect class="cell" x="126" y="40" width="5" height="5" rx="1" fill="#A3CBC1"/>
+        <text style="--i:3" x="132.5" y="45">4</text>
+        <g clip-path="url(#ctx-run)">
+          <path class="kvline" d="M24 104L146 74"/>
+          <path class="wline" d="M24 72H48.4V78H72.8V84H97.2V90H121.6V96H146"/>
+        </g>
+        <defs><clipPath id="ctx-run"><rect x="22" y="40" width="0" height="72"><animate attributeName="width" values="0;126;126" keyTimes="0;0.776;1" dur="8.5s" begin="0.8s" repeatCount="indefinite"/></rect></clipPath></defs>
+        <path class="ghost" style="--i:2" d="M24 62H146"/>
+        <text style="--i:2" x="146" y="59.5" text-anchor="end">fixed latency</text>
+        <text class="sv sv--ink" x="27" y="69" opacity="0">weights<animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.047;0.082;0.953;1" dur="8.5s" begin="0.8s" repeatCount="indefinite"/></text>
+        <text class="sv" x="146" y="71" text-anchor="end" opacity="0">kv cache<animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.753;0.788;0.953;1" dur="8.5s" begin="0.8s" repeatCount="indefinite"/></text>
+        <path class="d" pathLength="1" style="--i:0" d="M24 52V108H148"/>
+        <text style="--i:1" x="27" y="55">latency</text>
+        <text style="--i:2" x="148" y="116.5" text-anchor="end">context grows</text>
+        <path class="cursor" d="M24 56V108" opacity="0"><animateTransform attributeName="transform" type="translate" values="0 0;122 0;122 0" keyTimes="0;0.776;1" dur="8.5s" begin="0.8s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;0.012;0.776;0.812;1" dur="8.5s" begin="0.8s" repeatCount="indefinite"/></path>
+      </svg>
+      <p>As an agent's context grows, precision steps down on a schedule.</p>
+    </template>
     <div class="pub__meta"><span class="authors"><strong>Mukund Athmaram</strong>, Manoj Rao, Liang Ma</span><span class="venue">NeurIPS SLM-Agents workshop, 2026</span></div>
     <div class="links"><a class="btn" href="https://arxiv.org/abs/2610.15640">arxiv</a> <a class="btn" href="https://openreview.net/forum?id=XuS9AhA2zC">openreview</a></div>
   </div>
@@ -154,7 +394,33 @@
 </section>
 <section class="panel" id="panel-misc">
   <h2 class="label mono">misc</h2>
-  <p class="note">Coming soon.</p>
+  <!-- Photos live in assets/img/misc as 3:4 portrait WebP, metadata
+       stripped (a phone photo carries where it was taken). -->
+  <h3 class="htitle">Hobbies</h3>
+  <p>I enjoy going on hikes, eating food, and in general trying new things.</p>
+  <!-- a collage: four across (two on a phone). A .big one is two by two,
+       a .wide one two across, the rest one cell each, filling in order. -->
+  <div class="collage"><div class="collage__grid">
+    <img class="big" src="assets/img/misc/picture-1.webp" width="600" height="800" alt="Picture 1" loading="lazy" decoding="async">
+    <img src="assets/img/misc/picture-2.webp" width="600" height="800" alt="Picture 2" loading="lazy" decoding="async">
+    <img src="assets/img/misc/picture-4.webp" width="600" height="800" alt="Picture 4" loading="lazy" decoding="async">
+    <img src="assets/img/misc/picture-3.webp" width="600" height="800" alt="Picture 3" loading="lazy" decoding="async">
+    <img src="assets/img/misc/picture-5.webp" width="600" height="800" alt="Picture 5" loading="lazy" decoding="async">
+    <img class="wide" src="assets/img/misc/picture-6.webp" width="900" height="600" alt="Picture 6" loading="lazy" decoding="async">
+    <img class="big" src="assets/img/misc/picture-7.webp" width="600" height="800" alt="Picture 7" loading="lazy" decoding="async">
+    <img class="wide" src="assets/img/misc/picture-8.webp" width="600" height="800" alt="Picture 8" loading="lazy" decoding="async">
+  </div></div>
+  <p>Recently, I started drinking tea in the mornings and upgraded from tea bags to this fancy tea pot thing. Right now I have black and ginger tea (because they were on sale 😂), but I'm looking for recommendations for other teas to try!</p>
+  <div class="shots">
+    <figure>
+      <img src="assets/img/misc/picture-9.webp" width="720" height="960" alt="Picture 9" loading="lazy" decoding="async">
+    </figure>
+    <figure>
+      <!-- its first frame; site.js plays the clip (data-clip) over it on a
+           loop, like a gif, while it is on screen and motion runs -->
+      <div class="clipframe"><img class="clip" src="assets/img/misc/picture-10.webp" data-clip="assets/img/misc/clip-1.mp4" width="600" height="800" alt="Picture 10" loading="lazy" decoding="async"></div>
+    </figure>
+  </div>
 </section>
 </main>
 </div>
@@ -173,6 +439,6 @@
 <script src="assets/js/bg/governor.js?v=5410ed7c41"></script>
 <script src="assets/js/bg/render-webgl.js?v=20a50a113a"></script>
 <script src="assets/js/bg/main.js?v=e1408391ba"></script>
-<script src="assets/js/site.js?v=85f420dd4d"></script>
+<script src="assets/js/site.js?v=5d0f2dffd3"></script>
 </body>
 </html>
